@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/Nav/NavBar';
 import { isLoggedIn, handleRefreshToken } from '../services/auth';
+import GlobalStyles from '../styles/GlobalStyles';
 
 const Layout = ({ children }) => {
   useEffect(() => {
@@ -12,6 +13,7 @@ const Layout = ({ children }) => {
 
   return (
     <div>
+      <GlobalStyles/>
       <NavBar/>
       {children}
     </div>
