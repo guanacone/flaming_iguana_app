@@ -55,6 +55,7 @@ const NavWrapper = styled.div`
     }
 
   @media (max-width: 768px) {
+    font-size: 20px;
 
     a {
         text-decoration: none;
@@ -78,13 +79,14 @@ const NavWrapper = styled.div`
 
     .menu {
       flex-direction: column;
-      background-color: black;    
+      background-color: #3D3D3D ;    
       opacity: 1;
       position: fixed;
       transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
       top: 0;
       right: 0;
       height: 100vh;
+      min-width: 210px;
       width: 40vw;
       padding-top: 3.5rem;
       transition: transform 0.3s ease-in-out;
@@ -93,17 +95,17 @@ const NavWrapper = styled.div`
     .icon-wrapper {
         display: flex;
         flex-direction: row;
-        padding: 5px 20px;
+        padding: 5px 15px;
         span {
             opacity: 1;
             color: lightgrey;
-            font-size: 30px;
-            padding-left: 20px;
+            font-size: 20px;
+            padding-left: 15px;
         }
     }
 
     .icon {
-      width: 45px;
+      width: 40px;
     }
   }
 `;
