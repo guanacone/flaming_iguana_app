@@ -12,6 +12,12 @@ const Nav = styled.nav`
     font-family: 'Aleo';
     font-weight: bold;
     }
+
+  @media (max-width: 500px) {
+    .logo {
+      font-size: 20px;
+    }
+  } 
 `;
 
 const Navbar = () => {

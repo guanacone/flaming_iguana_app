@@ -21,7 +21,6 @@ const handleLogout = async (evt) => {
 const NavWrapper = styled.div`
     font-size: 30px;
 
-
     svg {
         color: lightgrey;
     }
@@ -46,16 +45,27 @@ const NavWrapper = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-right: 15px;
         span {
             opacity: 0;
             color: #3D3D3D;
             font-size: 10px;
+    font: normal normal 600 8px/11px Open Sans;
         }
     }
 
-  @media (max-width: 768px) {
+    .icon {
+      width: 50px;
+    }
+
+  @media (max-width: 500px) {
     font-size: 20px;
+
+    .icon-wrapper {
+      width: 30px;
+    }
+  }  
+
+  @media (max-width: 375px) {
 
     a {
         text-decoration: none;
@@ -66,6 +76,11 @@ const NavWrapper = styled.div`
             }
         }
     }
+
+    svg {
+      width: 30px;
+    }
+
     .masker {
       transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
       position: fixed;
@@ -96,11 +111,13 @@ const NavWrapper = styled.div`
         display: flex;
         flex-direction: row;
         padding: 5px 15px;
+        /* width: 100%; */
         span {
             opacity: 1;
             color: lightgrey;
             font-size: 20px;
             padding-left: 15px;
+            white-space: nowrap;
         }
     }
 
