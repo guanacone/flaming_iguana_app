@@ -14,5 +14,15 @@ module.exports = {
     },
     'gatsby-plugin-styled-components',
     'gatsby-plugin-use-query-params',
+    {
+      resolve: 'gatsby-plugin-google-fonts',
+      options: {
+        fonts: [
+          'Aleo',
+          'Open Sans',
+        ],
+        display: 'swap',
+      },
+    },
   ],
 };
