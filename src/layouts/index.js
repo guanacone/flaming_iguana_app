@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Footer from '../components/Footer';
 import NavBar from '../components/Nav/NavBar';
 import { isLoggedIn, handleRefreshToken } from '../services/auth';
 import GlobalStyles from '../styles/GlobalStyles';
@@ -16,6 +17,7 @@ const Layout = ({ children }) => {
       <GlobalStyles/>
       <NavBar/>
       {children}
+      <Footer/>
     </div>
   );
 };
