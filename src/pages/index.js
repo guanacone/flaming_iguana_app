@@ -3,20 +3,27 @@ import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 
-const StyledSection = styled.div`
+const StyledSection = styled.section`
   position: relative;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   z-index: -1;
 
+    h1 {
+      text-align: center;
+      font: normal normal 100 40px/55px Open Sans;
+      letter-spacing: -0.6px;
+      color: #3D3D3D;
+    }
+
     .logo {
-    width: 25%;
+    width: 18vw;
     min-width: 200px;
-    margin-top: 5%;
+
   }
+
 
   @media(max-width: 420px) {
     flex-direction: column-reverse;
@@ -35,7 +42,6 @@ const Home = () => {
       }
     }
   `);
-  console.log({ data });
 
   return (
     <StyledSection>
