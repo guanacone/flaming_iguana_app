@@ -19,18 +19,33 @@ const StyledSection = styled.section`
   opacity: 1;
   display: inline-block;
   text-align: center;
+  /* margin: ${({ open }) => (open ? 0 : null)};   */
+  }
+
+  form {
+    display: ${({ open }) => (open ? 'none' : null)};
+  }
+
+  p {
+    margin: 0;
   }
 
   #wrapper {
-    /* border: 1px solid black;  */
     grid-area: 'form';
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
+  .message {
+    display: ${({ open }) => (open ? null : 'none')};
+    text-align: center;
+    font: normal normal 300 18px/28px Open Sans;
+    letter-spacing: -0.27px;
+    color: #939393;
+  }
+
   #logo {
-    /* border: 3px solid yellow;  */
     grid-area: 'logo';
     display: flex;
     justify-content: center;
@@ -65,9 +80,10 @@ const UserNew = () => {
     }
   `);
 
-  const [title, setTitle] = useState('Sign Up Today!');
+  const [open, setOpen] = useState(false);
+
   return (
-    <StyledSection>
+    <StyledSection open={open}>
       <div id='logo'>
         <Img
           style={{ width: '30vw', minWidth: '200px' }}
@@ -76,7 +92,15 @@ const UserNew = () => {
         />
       </div>
       <div id='wrapper'>
-        <h1>{title}</h1>
+        <h1>{open
+          ? 'Thank You!'
+          : 'Sign Up Today!'}</h1>
+        <div className='message'>
+          <p>
+            Please check your email for a link to confirm
+            your email address and finish the sign up process.
+          </p>
+        </div>
         <UserForm
           handleSubmit = {
             async (evt) => {
@@ -92,7 +116,7 @@ const UserNew = () => {
                     password: password.value,
                   },
                 });
-                setTitle('/login');
+                setOpen(!open);
               } catch (err) {
                 const { response } = err;
                 alert(response.data.message);
@@ -103,7 +127,6 @@ const UserNew = () => {
           email={email}
           password={password} />
       </div>
-      {/* <div id='container'></div> */}
     </StyledSection>
   );
 };
