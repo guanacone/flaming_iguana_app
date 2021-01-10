@@ -86,7 +86,7 @@ const UserNew = () => {
     <StyledSection open={open}>
       <div id='logo'>
         <Img
-          style={{ width: '30vw', minWidth: '200px' }}
+          style={{ width: '20vw', minWidth: '200px' }}
           fluid={data.file.childImageSharp.fluid}
           alt='vectorized picture of an iguana head'
         />
