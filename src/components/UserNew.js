@@ -19,7 +19,6 @@ const StyledSection = styled.section`
   opacity: 1;
   display: inline-block;
   text-align: center;
-  /* margin: ${({ open }) => (open ? 0 : null)};   */
   }
 
   form {
