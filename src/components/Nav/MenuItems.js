@@ -111,7 +111,6 @@ const NavWrapper = styled.div`
         display: flex;
         flex-direction: row;
         padding: 5px 15px;
-        /* width: 100%; */
         span {
             opacity: 1;
             color: lightgrey;
