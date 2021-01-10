@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
+import { graphql, useStaticQuery } from 'gatsby';
+import Img from 'gatsby-image';
 import UserForm from './UserForm';
 import useInput from '../hooks/useInput';
 
 const StyledSection = styled.section`
-  display: flex;
-  align-items: center;
-  padding-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    'logo wrapper .';
 
   h1 {
   font: normal normal 300 40px/55px Open Sans;
@@ -19,23 +22,29 @@ const StyledSection = styled.section`
   }
 
   #wrapper {
-    /* border: 1px solid black; */
+    /* border: 1px solid black;  */
+    grid-area: 'form';
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* flex-grow: 1; */
-  }
-
-  #container {
-    /* border: 3px solid yellow; */
-    flex-grow: 1;
   }
 
   #logo {
-    /* border: 2px solid red; */
-    background: var(--green);
-    margin-top: 20px;
-    flex-grow: 1; 
+    /* border: 3px solid yellow;  */
+    grid-area: 'logo';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 20px;
+  }
+
+  @media(max-width: 700px) {
+    display: flex;
+    justify-content: center;
+
+    #logo {
+      display: none;
+    }
   }
 `;
 
@@ -44,11 +53,28 @@ const UserNew = () => {
   const familyName = useInput('');
   const email = useInput('');
   const password = useInput('');
+  const data = useStaticQuery(graphql`
+    query {
+      file(relativePath: {eq: "iguana_logo.png"}) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid_tracedSVG
+          }
+        }
+      }
+    }
+  `);
 
   const [title, setTitle] = useState('Sign Up Today!');
   return (
     <StyledSection>
-      <div id='logo'></div>
+      <div id='logo'>
+        <Img
+          style={{ width: '30vw', minWidth: '200px' }}
+          fluid={data.file.childImageSharp.fluid}
+          alt='vectorized picture of an iguana head'
+        />
+      </div>
       <div id='wrapper'>
         <h1>{title}</h1>
         <UserForm
@@ -77,8 +103,7 @@ const UserNew = () => {
           email={email}
           password={password} />
       </div>
-      <div id='container'>
-      </div>
+      {/* <div id='container'></div> */}
     </StyledSection>
   );
 };
