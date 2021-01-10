@@ -1,7 +1,16 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import Footer from '../components/Footer';
 import NavBar from '../components/Nav/NavBar';
 import { isLoggedIn, handleRefreshToken } from '../services/auth';
 import GlobalStyles from '../styles/GlobalStyles';
+
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction:  column;
+  justify-content: space-between;
+  height: 90vh;
+`;
 
 const Layout = ({ children }) => {
   useEffect(() => {
@@ -12,11 +21,12 @@ const Layout = ({ children }) => {
   }, []);
 
   return (
-    <div>
+    <StyledWrapper>
       <GlobalStyles/>
       <NavBar/>
       {children}
-    </div>
+      <Footer/>
+    </StyledWrapper>
   );
 };
 
