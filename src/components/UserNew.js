@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, navigate, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import UserForm from './UserForm';
 import useInput from '../hooks/useInput';
@@ -116,6 +116,7 @@ const UserNew = () => {
                   },
                 });
                 setOpen(!open);
+                setTimeout(() => navigate('/'), 1e4);
               } catch (err) {
                 const { response } = err;
                 alert(response.data.message);
