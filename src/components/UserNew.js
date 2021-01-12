@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
-import { graphql, navigate, useStaticQuery } from 'gatsby';
-import Img from 'gatsby-image';
+import { navigate } from 'gatsby';
 import UserForm from './UserForm';
 import useInput from '../hooks/useInput';
+import Logo from './Img_Components/Logo';
 
 const StyledSection = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas:
-    'logo wrapper .';
 
   h1 {
   font: normal normal 300 40px/55px Open Sans;
@@ -29,13 +27,6 @@ const StyledSection = styled.section`
     margin: 0;
   }
 
-  #wrapper {
-    grid-area: 'form';
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
   .message {
     display: ${({ open }) => (open ? null : 'none')};
     text-align: center;
@@ -44,12 +35,21 @@ const StyledSection = styled.section`
     color: #939393;
   }
 
-  #logo {
-    grid-area: 'logo';
+  #wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #logo-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: 20px;
+  }
+
+  .logo {
+    width: 20vw;
+    min-width: 200px;
   }
 
   @media(max-width: 700px) {
@@ -67,28 +67,13 @@ const UserNew = () => {
   const familyName = useInput('');
   const email = useInput('');
   const password = useInput('');
-  const data = useStaticQuery(graphql`
-    query {
-      file(relativePath: {eq: "iguana_logo.png"}) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid_tracedSVG
-          }
-        }
-      }
-    }
-  `);
 
   const [open, setOpen] = useState(false);
 
   return (
     <StyledSection open={open}>
-      <div id='logo'>
-        <Img
-          style={{ width: '20vw', minWidth: '200px' }}
-          fluid={data.file.childImageSharp.fluid}
-          alt='vectorized picture of an iguana head'
-        />
+      <div id='logo-wrapper'>
+        <Logo />
       </div>
       <div id='wrapper'>
         <h1>{open
