@@ -128,7 +128,7 @@ const NavWrapper = styled.div`
 
 const MenuItems = ({ open }) => {
   return (
-    <NavWrapper open={open}>
+    <NavWrapper id='container' open={open}>
       <div className='masker'></div>
       <div className='menu'>
         <Link to={'/'}>

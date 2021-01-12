@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MenuItems from './MenuItems';
 
@@ -37,6 +37,28 @@ const StyledBurger = styled.div`
 
 const Burger = () => {
   const [open, setOpen] = useState(false);
+  // close menu on click
+  useEffect(() => {
+    const container = document.querySelector('#container');
+
+    const clickHandler = ({ target }) => {
+      if (container.contains(target)) return setOpen(!open);
+    };
+    document.addEventListener('click', clickHandler);
+
+    // these functions clean up the event listeners
+    return () => document.removeEventListener('click', clickHandler);
+  });
+  // close menu with 'esc' key
+  useEffect(() => {
+    const keyHandler = ({ keyCode }) => {
+      if (keyCode !== 27) return;
+      setOpen(false);
+    };
+    document.addEventListener('keydown', keyHandler);
+
+    return () => document.removeEventListener('keydown', keyHandler);
+  });
 
   return (
     <>
