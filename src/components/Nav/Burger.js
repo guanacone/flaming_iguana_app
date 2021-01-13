@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import MenuItems from './MenuItems';
 
@@ -37,18 +37,17 @@ const StyledBurger = styled.div`
 
 const Burger = () => {
   const [open, setOpen] = useState(false);
+  const wrapperRef = useRef(null);
   // close menu on click
   useEffect(() => {
-    const container = document.querySelector('#container');
-
     const clickHandler = ({ target }) => {
-      if (container.contains(target)) return setOpen(!open);
+      if (wrapperRef.current.contains(target)) return setOpen(!open);
     };
     document.addEventListener('click', clickHandler);
 
-    // these functions clean up the event listeners
     return () => document.removeEventListener('click', clickHandler);
-  });
+  }, [open]);
+
   // close menu with 'esc' key
   useEffect(() => {
     const keyHandler = ({ keyCode }) => {
@@ -58,17 +57,17 @@ const Burger = () => {
     document.addEventListener('keydown', keyHandler);
 
     return () => document.removeEventListener('keydown', keyHandler);
-  });
+  }, [open]);
 
   return (
-    <>
+    <div ref={wrapperRef}>
       <StyledBurger open={open} onClick={() => setOpen(!open)}>
         <div/>
         <div/>
         <div/>
       </StyledBurger>
       <MenuItems open={open}/>
-    </>
+    </div>
   );
 };
 
