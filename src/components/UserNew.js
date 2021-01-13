@@ -56,7 +56,7 @@ const StyledSection = styled.section`
     display: flex;
     justify-content: center;
 
-    #logo {
+    #logo-wrapper {
       display: none;
     }
   }
