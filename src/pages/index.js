@@ -1,7 +1,6 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
-import Img from 'gatsby-image';
 import styled from 'styled-components';
+import Logo from '../components/Img_Components/Logo';
 
 const StyledSection = styled.section`
   position: relative;
@@ -31,25 +30,9 @@ const StyledSection = styled.section`
 `;
 
 const Home = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      file(relativePath: {eq: "iguana_logo.png"}) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid_tracedSVG
-          }
-        }
-      }
-    }
-  `);
-
   return (
     <StyledSection>
-      <Img
-        className='logo'
-        fluid={data.file.childImageSharp.fluid}
-        alt='vectorized picture of an iguana head'
-      />
+      <Logo />
       <h1>Welcome to The Flaming Iguana</h1>
     </StyledSection>
   );
