@@ -27,7 +27,7 @@ const Login = () => {
         </label>
         <input type='submit' value='Submit' />
       </form>
-      <Link to='/forgotPassword'>Forgot your password?</Link>
+      <Link to='/forgot_password'>Forgot your password?</Link>
     </>
   );
 };
