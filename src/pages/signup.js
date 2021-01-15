@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
 import { navigate } from 'gatsby';
-import UserForm from './UserForm';
+import UserForm from '../components/UserForm';
 import useInput from '../hooks/useInput';
-import Logo from './Img_Components/Logo';
+import Logo from '../components/Img_Components/Logo';
 
 const StyledSection = styled.section`
   display: grid;
