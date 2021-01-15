@@ -15,7 +15,7 @@ const UserActivation = () => {
     if (errorContent) {
       const axiosMsg = get(errorContent, ['response', 'data', 'message']);
       if (axiosMsg) {
-        return <p>Your token has expired. Please <Link to={'/user/new'}>sign up</Link> again</p>;
+        return <p>Your token has expired. Please <Link to={'/signup'}>sign up</Link> again</p>;
       }
       return (
         <p>{errorContent.message}</p>

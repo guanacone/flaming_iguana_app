@@ -166,7 +166,7 @@ const MenuItems = ({ open }) => {
                 <span>LOG IN!</span>
               </div>
             </Link>
-            <Link to={'/user/new'}>
+            <Link to={'/signup'}>
               <div className='icon-wrapper'>
                 <FontAwesomeIcon className='icon' icon={faUserPlus} />
                 <span>SIGN UP!</span>
