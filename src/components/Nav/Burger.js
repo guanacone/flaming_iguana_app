@@ -38,15 +38,18 @@ const StyledBurger = styled.div`
 const Burger = () => {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef(null);
+  const burgerRef = useRef(null);
   // close menu on click
   useEffect(() => {
     const clickHandler = ({ target }) => {
-      if (wrapperRef.current.contains(target)) return setOpen(!open);
+      if (wrapperRef.current.contains(target)) {
+        return burgerRef.current.click();
+      }
     };
     document.addEventListener('click', clickHandler);
 
     return () => document.removeEventListener('click', clickHandler);
-  }, [open]);
+  }, []);
 
   // close menu with 'esc' key
   useEffect(() => {
@@ -57,17 +60,17 @@ const Burger = () => {
     document.addEventListener('keydown', keyHandler);
 
     return () => document.removeEventListener('keydown', keyHandler);
-  }, [open]);
+  }, []);
 
   return (
-    <div ref={wrapperRef}>
-      <StyledBurger open={open} onClick={() => setOpen(!open)}>
+    <>
+      <StyledBurger ref={burgerRef} open={open} onClick={() => setOpen(!open)}>
         <div/>
         <div/>
         <div/>
       </StyledBurger>
-      <MenuItems open={open}/>
-    </div>
+      <MenuItems open={open} menuRef={wrapperRef}/>
+    </>
   );
 };
 
