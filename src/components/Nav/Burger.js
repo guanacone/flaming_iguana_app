@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import MenuItems from './MenuItems';
 
@@ -18,7 +18,7 @@ const StyledBurger = styled.div`
     cursor: pointer;
     width: 2rem;
     height: 0.25rem;
-    background-color: ${({ open }) => (open ? '#ccc' : 'lightgrey')};
+    background: #ccc;
     border-radius: 10px;
     transform-origin: 1px;
     transition: all 0.3s linear;
@@ -37,15 +37,39 @@ const StyledBurger = styled.div`
 
 const Burger = () => {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef(null);
+  const burgerRef = useRef(null);
+  // close menu on click
+  useEffect(() => {
+    const clickHandler = ({ target }) => {
+      if (menuRef.current.contains(target)) {
+        return burgerRef.current.click();
+      }
+    };
+    document.addEventListener('click', clickHandler);
+
+    return () => document.removeEventListener('click', clickHandler);
+  }, []);
+
+  // close menu with 'esc' key
+  useEffect(() => {
+    const keyHandler = ({ keyCode }) => {
+      if (keyCode !== 27) return;
+      setOpen(false);
+    };
+    document.addEventListener('keydown', keyHandler);
+
+    return () => document.removeEventListener('keydown', keyHandler);
+  }, []);
 
   return (
     <>
-      <StyledBurger open={open} onClick={() => setOpen(!open)}>
+      <StyledBurger ref={burgerRef} open={open} onClick={() => setOpen(!open)}>
         <div/>
         <div/>
         <div/>
       </StyledBurger>
-      <MenuItems open={open}/>
+      <MenuItems open={open} menuRef={menuRef}/>
     </>
   );
 };

@@ -111,7 +111,6 @@ const NavWrapper = styled.div`
         display: flex;
         flex-direction: row;
         padding: 5px 15px;
-        /* width: 100%; */
         span {
             opacity: 1;
             color: lightgrey;
@@ -127,9 +126,9 @@ const NavWrapper = styled.div`
   }
 `;
 
-const MenuItems = ({ open }) => {
+const MenuItems = ({ open, menuRef }) => {
   return (
-    <NavWrapper open={open}>
+    <NavWrapper ref={menuRef} open={open}>
       <div className='masker'></div>
       <div className='menu'>
         <Link to={'/'}>
