@@ -21,10 +21,6 @@ const handleLogout = async (evt) => {
 const NavWrapper = styled.div`
     font-size: 30px;
 
-    svg {
-        color: lightgrey;
-    }
-
     a {
         text-decoration: none;
         :hover {

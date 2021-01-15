@@ -5,10 +5,10 @@ import Burger from './Burger';
 const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
+  padding: 5px;
 
   .logo {
     font-size: 30px;
-    color: var(--green);
     font-family: 'Aleo';
     font-weight: bold;
     }
