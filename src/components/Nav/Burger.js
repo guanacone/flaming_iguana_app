@@ -37,12 +37,12 @@ const StyledBurger = styled.div`
 
 const Burger = () => {
   const [open, setOpen] = useState(false);
-  const wrapperRef = useRef(null);
+  const menuRef = useRef(null);
   const burgerRef = useRef(null);
   // close menu on click
   useEffect(() => {
     const clickHandler = ({ target }) => {
-      if (wrapperRef.current.contains(target)) {
+      if (menuRef.current.contains(target)) {
         return burgerRef.current.click();
       }
     };
@@ -69,7 +69,7 @@ const Burger = () => {
         <div/>
         <div/>
       </StyledBurger>
-      <MenuItems open={open} menuRef={wrapperRef}/>
+      <MenuItems open={open} menuRef={menuRef}/>
     </>
   );
 };
