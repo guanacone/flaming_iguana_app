@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link, navigate } from 'gatsby';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faQuestionCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { handleLogin, isLoggedIn } from '../services/auth';
 import useInput from '../hooks/useInput';
+import Logo from '../components/Img_Components/Logo';
 
 const Login = () => {
   const email = useInput('');
@@ -11,24 +17,44 @@ const Login = () => {
     navigate('/user');
   }
 
+  const StyledSection = styled.section`
+
+    a {
+      text-decoration: none;
+      font: normal normal normal 12px/17px Open Sans;
+      color: var(--green);
+      /* padding-bottom: 25px; */
+      position: relative;
+      top: -20px;
+
+      svg{
+        color: var(--green);
+      }
+    }
+  `;
+
   return (
-    <>
-      <form onSubmit={(evt) => {
-        evt.preventDefault();
-        handleLogin({ email: email.value, password: password.value });
-      }}>
-        <label>
-          Email:
-          <input type='text' {...email.bind} />
-        </label>
-        <label>
-          Password:
-          <input type='password' {...password.bind} />
-        </label>
-        <input type='submit' value='Submit' />
-      </form>
-      <Link to='/forgot_password'>Forgot your password?</Link>
-    </>
+    <StyledSection className='container'>
+      <div className='logo-wrapper'>
+        <Logo/>
+      </div>
+      <div className='main-wrapper'>
+        <h1>Log In!</h1>
+        <form onSubmit={(evt) => {
+          evt.preventDefault();
+          handleLogin({ email: email.value, password: password.value });
+        }}>
+          <label>
+            <input type='email' placeholder='Email' {...email.bind} />
+          </label>
+          <label>
+            <input type='password' placeholder='Password' {...password.bind} />
+          </label>
+          <Link to='/forgot_password'><FontAwesomeIcon className='icon' icon={faQuestionCircle} />Forgot your password?</Link>
+          <input className='submit-button' type='submit' value='Submit' />
+        </form>
+      </div>
+    </StyledSection>
   );
 };
 
