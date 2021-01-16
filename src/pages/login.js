@@ -9,6 +9,20 @@ import { handleLogin, isLoggedIn } from '../services/auth';
 import useInput from '../hooks/useInput';
 import Logo from '../components/Img_Components/Logo';
 
+const StyledSection = styled.section`
+  a {
+    text-decoration: none;
+    font: normal normal normal 12px/17px Open Sans;
+    color: var(--green);
+    position: relative;
+    top: -20px;
+
+    svg{
+      color: var(--green);
+    }
+  }
+`;
+
 const Login = () => {
   const email = useInput('');
   const password = useInput('');
@@ -16,22 +30,6 @@ const Login = () => {
   if (isLoggedIn()) {
     navigate('/user');
   }
-
-  const StyledSection = styled.section`
-
-    a {
-      text-decoration: none;
-      font: normal normal normal 12px/17px Open Sans;
-      color: var(--green);
-      /* padding-bottom: 25px; */
-      position: relative;
-      top: -20px;
-
-      svg{
-        color: var(--green);
-      }
-    }
-  `;
 
   return (
     <StyledSection className='container'>
@@ -45,10 +43,10 @@ const Login = () => {
           handleLogin({ email: email.value, password: password.value });
         }}>
           <label>
-            <input type='email' placeholder='Email' {...email.bind} />
+            <input type='email' placeholder='Email' required {...email.bind} />
           </label>
           <label>
-            <input type='password' placeholder='Password' {...password.bind} />
+            <input type='password' placeholder='Password' required {...password.bind} />
           </label>
           <Link to='/forgot_password'><FontAwesomeIcon className='icon' icon={faQuestionCircle} />Forgot your password?</Link>
           <input className='submit-button' type='submit' value='Submit' />
