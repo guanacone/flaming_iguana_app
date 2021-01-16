@@ -4,15 +4,16 @@ import Footer from '../components/Footer';
 import NavBar from '../components/Nav/NavBar';
 import { isLoggedIn, handleRefreshToken } from '../services/auth';
 import GlobalStyles from '../styles/GlobalStyles';
+import 'normalize.css';
 
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction:  column;
   justify-content: space-between;
-  height: 90vh;
+  height: 100vh;
 `;
 
-const Layout = ({ children }) => {
+const Layout = ({ location, children }) => {
   useEffect(() => {
     if (isLoggedIn()) {
       handleRefreshToken();
@@ -20,9 +21,12 @@ const Layout = ({ children }) => {
     }
   }, []);
 
+  const regExPattern = /^(\/user)/;
+  const isProtected = regExPattern.test(location.pathname);
+  console.log({ isProtected }, `pathname: ${location.pathname}`);
   return (
     <StyledWrapper>
-      <GlobalStyles/>
+      <GlobalStyles isProtected={isProtected}/>
       <NavBar/>
       {children}
       <Footer/>
