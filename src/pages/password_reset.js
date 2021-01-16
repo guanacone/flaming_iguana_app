@@ -6,8 +6,17 @@ import useInput from '../hooks/useInput';
 import handleSubmit from '../utils/handleSubmit';
 
 const PasswordReset = () => {
+  const [resetToken] = useQueryParam('resetToken', StringParam);
   const newPassword = useInput('');
   const confirmNewPassword = useInput('');
+
+  if (!resetToken) {
+    return (
+      <h2>Please request new password reset link</h2>
+    );
+  }
+
+  const { user: { _id } } = jwt.decode(resetToken);
 
   return (
     <>
@@ -15,8 +24,6 @@ const PasswordReset = () => {
       <form onSubmit={
         async (evt) => {
           evt.preventDefault();
-          const [resetToken] = useQueryParam('resetToken', StringParam);
-          const { user: { _id } } = jwt.decode(resetToken);
           if (newPassword.value !== confirmNewPassword.value) {
             alert('new passwords do not match');
           } else {
