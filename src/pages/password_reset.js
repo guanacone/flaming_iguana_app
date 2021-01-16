@@ -7,9 +7,16 @@ import handleSubmit from '../utils/handleSubmit';
 
 const PasswordReset = () => {
   const [resetToken] = useQueryParam('resetToken', StringParam);
-  const { user: { _id } } = jwt.decode(resetToken);
   const newPassword = useInput('');
   const confirmNewPassword = useInput('');
+
+  if (!resetToken) {
+    return (
+      <h2>Please request new password reset link</h2>
+    );
+  }
+
+  const { user: { _id } } = jwt.decode(resetToken);
 
   return (
     <>

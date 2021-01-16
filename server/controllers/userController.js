@@ -47,7 +47,7 @@ exports.createUser = async (req, res) => {
       from: 'account_activation@rusca.dev',
       to: newUser.email,
       subject: 'Activate your account',
-      html: `<p>Please <a href=${frontEndURL}/user/activation?activationToken=${activationToken}>activate your account</a> by following the previous link`,
+      html: `<p>Please <a href=${frontEndURL}/account_activation?activationToken=${activationToken}>activate your account</a> by following the previous link`,
     };
     await sendEmail(data);
     return res
@@ -148,7 +148,7 @@ exports.sendResetPasswordLink = async (req, res) => {
       from: 'account_activation@rusca.dev',
       to: user.email,
       subject: 'Reset your password',
-      html: `<p>Please reset your password <a href=${frontEndURL}/user/password_reset?resetToken=${resetToken}>here</a>.`,
+      html: `<p>Please reset your password <a href=${frontEndURL}/>password_reset?resetToken=${resetToken}>here</a>.`,
     };
     await sendEmail(data);
   }
