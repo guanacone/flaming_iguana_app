@@ -7,17 +7,6 @@ import useInput from '../hooks/useInput';
 import Logo from '../components/Img_Components/Logo';
 
 const StyledSection = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-
-  h1 {
-  font: normal normal 300 40px/55px Open Sans;
-  letter-spacing: -0.6px;
-  color: #3D3D3D;
-  opacity: 1;
-  display: inline-block;
-  text-align: center;
-  }
 
   form {
     display: ${({ open }) => (open ? 'none' : null)};
@@ -33,33 +22,7 @@ const StyledSection = styled.section`
     font: normal normal 300 18px/28px Open Sans;
     letter-spacing: -0.27px;
     color: #939393;
-  }
-
-  #wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #logo-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .logo {
-    width: 20vw;
-    min-width: 200px;
-  }
-
-  @media(max-width: 700px) {
-    display: flex;
-    justify-content: center;
-
-    #logo-wrapper {
-      display: none;
-    }
-  }
+  }  
 `;
 
 const UserNew = () => {
@@ -71,11 +34,11 @@ const UserNew = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <StyledSection open={open}>
-      <div id='logo-wrapper'>
-        <Logo />
+    <StyledSection className='container' open={open}>
+      <div className='logo-wrapper'>
+        <Logo/>
       </div>
-      <div id='wrapper'>
+      <div className='main-wrapper'>
         <h1>{open
           ? 'Thank You!'
           : 'Sign Up Today!'}</h1>
