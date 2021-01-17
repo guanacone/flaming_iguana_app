@@ -8,6 +8,7 @@ import {
 import { handleLogin, isLoggedIn } from '../services/auth';
 import useInput from '../hooks/useInput';
 import Logo from '../components/Img_Components/Logo';
+import SubmitButton from '../components/Buttons/SubmitButton';
 
 const StyledSection = styled.section`
   a {
@@ -20,6 +21,10 @@ const StyledSection = styled.section`
     svg{
       color: var(--green);
     }
+  }
+
+  .icon {
+    padding-right: 5px;
   }
 `;
 
@@ -48,8 +53,8 @@ const Login = () => {
           <label>
             <input type='password' placeholder='Password' required {...password.bind} />
           </label>
-          <Link to='/forgot_password'><FontAwesomeIcon className='icon' icon={faQuestionCircle} />Forgot your password?</Link>
-          <input className='submit-button' type='submit' value='Submit' />
+          <Link to='/forgot_password'><FontAwesomeIcon className='icon' icon={faQuestionCircle}/>Forgot your password?</Link>
+          <SubmitButton/>
         </form>
       </div>
     </StyledSection>

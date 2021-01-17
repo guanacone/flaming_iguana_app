@@ -50,15 +50,6 @@ const GlobalStyles = createGlobalStyle`
         }
     }
 
-    .submit-button {
-        background: #9ECF73 0% 0% no-repeat padding-box;
-        font: normal normal 600 17px/23px Open Sans;
-        letter-spacing: 0.51px;
-        color: #FFFFFF;
-        text-transform: uppercase;
-        opacity: 1;
-    }
-
     .container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;

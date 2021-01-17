@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Logo from '../components/Img_Components/Logo';
 import useInput from '../hooks/useInput';
 import handleSubmit from '../utils/handleSubmit';
+import SubmitButton from '../components/Buttons/SubmitButton';
 
 const StyledSection = styled.section`
 
@@ -67,7 +68,7 @@ const ForgotPassword = () => {
           <label>
             <input type='email' placeholder='Email' required {...userEmail.bind}/>
           </label>
-          <input className='submit-button' type='submit' value='Submit' />
+          <SubmitButton/>
         </form>
       </div>
     </StyledSection>
