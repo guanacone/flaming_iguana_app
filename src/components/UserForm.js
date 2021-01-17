@@ -1,4 +1,5 @@
 import React from 'react';
+import SubmitButton from './Buttons/SubmitButton';
 
 const UserForm = ({
   firstName,
@@ -22,7 +23,7 @@ const UserForm = ({
         <input type='password' placeholder='Password' required minLength='6' {...password.bind} />
       </label>
       : null }
-    <input className='submit-button' type='submit' value='Submit' />
+    <SubmitButton/>
   </form>
 );
 
