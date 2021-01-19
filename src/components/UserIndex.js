@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link, navigate, graphql, useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
-import md5 from 'md5';
 import Img from 'gatsby-image';
 import useFetchAPI from '../hooks/useFetchAPI';
 import { getUser, isLoggedIn } from '../services/auth';
 import isBrowser from '../utils/isBrowser';
-// import Logo from './Img_Components/Logo';
+import hashEmail from '../utils/hashEmail';
 
 const StyledSection = styled.section`
   display: flex;
@@ -92,12 +91,9 @@ const UserIndex = () => {
       return (
         <>
           {dataContent.map((profile) => {
-            const hashedEmail = md5(profile.email
-              .trim()
-              .toLowerCase());
             return (
               <div key={profile._id} className='card'>
-                <img src={`https://www.gravatar.com/avatar/${hashedEmail}?s=200`} />
+                <img src={`https://www.gravatar.com/avatar/${hashEmail(profile.email)}?s=200`} />
                 <Link to={`/user/${profile._id}`}>
                   {profile.firstName} {profile.familyName}
                 </Link>
