@@ -16,7 +16,6 @@ const GlobalStyles = createGlobalStyle`
     h1 {
         font: normal normal 300 40px/55px Open Sans;
         letter-spacing: -0.6px;
-        color: #3D3D3D;
         opacity: 1;
         display: inline-block;
         text-align: center;

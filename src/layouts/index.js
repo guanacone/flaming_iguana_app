@@ -23,13 +23,13 @@ const Layout = ({ location, children }) => {
 
   const regExPattern = /^(\/user)/;
   const isProtected = regExPattern.test(location.pathname);
-  console.log({ isProtected }, `pathname: ${location.pathname}`);
+
   return (
     <StyledWrapper>
       <GlobalStyles isProtected={isProtected}/>
       <NavBar/>
       {children}
-      <Footer/>
+      <Footer isProtected={isProtected}/>
     </StyledWrapper>
   );
 };

@@ -40,6 +40,7 @@
     "jsonwebtoken": "8.5.1",
     "lodash.get": "4.4.2",
     "mailgun.js": "2.0.6",
+    "md5": "2.3.0",
     "mongoose": "5.11.9",
     "normalize.css": "8.0.1",
     "passport": "0.4.1",
