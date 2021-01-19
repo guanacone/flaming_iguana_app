@@ -1,10 +1,62 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, navigate } from 'gatsby';
 import axios from 'axios';
 import styled from 'styled-components';
 import jwt from 'jsonwebtoken';
-import useFetchAPI from '../hooks/useFetchAPI';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faPen,
+} from '@fortawesome/free-solid-svg-icons';
+// import useFetchAPI from '../hooks/useFetchAPI';
 import { isLoggedIn, getUser } from '../services/auth';
+import hashEmail from '../utils/hashEmail';
+import Logo from './Img_Components/Logo';
+import UserEdit from './UserEdit';
+
+const StyledSection = styled.section`
+  display: flex;
+  /* border: 1px solid black; */
+  margin: 0 7.5vw;
+  
+  h1, h2 {
+    text-align: left;
+    margin: 0;
+  }
+
+  h2 {
+    font: normal normal normal 14px/19px Open Sans;
+    letter-spacing: -0.21px;
+  }
+
+  .left {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    img {
+      /* width: 80%; */
+      border: 6px solid #FFF;
+      border-radius: 50%;
+      margin: 30px 50px;
+    } 
+  }
+  
+  center {
+    /* border: 1px solid black; */
+    flex-grow: 2;
+    text-align: left;
+
+    .icon {
+      cursor: pointer;
+    }
+  }
+
+  .right {
+    /* border: 1px solid black; */
+    margin-left: 50px;
+    flex-grow: 1;
+  }
+
+`;
 
 const DeleteButton = styled.button`
   background: none;
@@ -42,48 +94,72 @@ const User = ({ id }) => {
 
   const user = getUser();
   const { user: loggedInUser } = jwt.decode(user.token);
-  const { data, error } = useFetchAPI({ endpoint: `/user/${id}`, token: user.token });
-  const getContent = (dataContent, errorContent) => {
-    if (errorContent) {
-      return (
-        <p>{errorContent.message}</p>
-      );
-    }
-
-    if (dataContent) {
-      return (
-        <>
-          <p>User ID: {id}</p>
-          <p>First Name: {dataContent.firstName}</p>
-          <p>Family Name: {dataContent.familyName}</p>
-          { loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')
-            ? <>
-              <Link to={`/user/${id}/edit`}>Edit Details</Link><br></br>
-              <Link to={`user/${id}/password_edit`}>Edit Password</Link><br></br>
-            </>
-            : null
-          }
-          {loggedInUser.roles && loggedInUser.roles.find((role) => role === 'admin')
-            ? <>
-              <DeleteButton type='button' onClick={
-                () => deleteUser(`user/${id}`)}
-              >Delete User</DeleteButton>
-            </>
-            : null
-          }
-        </>
-      );
-    }
-    return (
-      <p>loading...</p>
-    );
+  const [editing, setEditing] = useState(false);
+  const changeState = (value) => {
+    setEditing(value);
   };
+  // const { data, error } = useFetchAPI({ endpoint: `/user/${id}`, token: user.token });
+
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const result = await axios({
+          url: `/user/${id}`,
+          headers: { Authorization: `Bearer ${user.token}` },
+        });
+        setData(result.data);
+      } catch (err) {
+        setError(err);
+      }
+    })();
+  }, [editing]);
 
   return (
-    <div>
-      <h1>User Profile</h1>
-      {getContent(data, error)}
-    </div>
+    <StyledSection>
+      {error
+        ? <p>{error.message}</p>
+        : null
+      }
+      {data
+        ? <>
+          <aside className='left'>
+            <h1>User Profile</h1>
+            <h2>User: {id}</h2>
+            <img src={`https://www.gravatar.com/avatar/${hashEmail(data.email)}?s=200`} />
+            { loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')
+              ? <Link to={'#'}>Edit Password</Link>
+              : null
+            }
+            {loggedInUser.roles && loggedInUser.roles.find((role) => role === 'admin')
+              ? <DeleteButton type='button' onClick={() => deleteUser(`user/${id}`)}>
+                Delete User
+              </DeleteButton>
+              : null
+            }
+          </aside>
+          <center>
+            {!editing
+              ? <>
+                <h3>{data.firstName} {data.familyName}
+                  <FontAwesomeIcon className='icon' icon={faPen} onClick={() => setEditing(true)}/></h3>
+                <h4>{data.email}</h4>
+                <h4>Biography:</h4>
+                <p>{data.biography }</p>
+              </>
+              : <UserEdit
+                data={data} id={id} user={user} editing={editing} changeState={changeState}
+              />
+            }
+          </center>
+          <div className='right'>
+            <Logo/>
+          </div>
+        </>
+        : null}
+    </StyledSection>
   );
 };
 
