@@ -1,22 +1,20 @@
 import React, { useEffect } from 'react';
-import { navigate } from 'gatsby';
+// import { navigate } from 'gatsby';
 import UserForm from './UserForm';
 import useInput from '../hooks/useInput';
-import useFetchAPI from '../hooks/useFetchAPI';
+// import useFetchAPI from '../hooks/useFetchAPI';
 import handleSubmit from '../utils/handleSubmit';
-import { isLoggedIn, getUser } from '../services/auth';
+// import { isLoggedIn, getUser } from '../services/auth';
 
-const UserNew = ({ location }) => {
-  if (!isLoggedIn()) {
-    navigate('/login');
-  }
-
-  const user = getUser();
-  const userID = location.pathname.split('/')[2];
-  const { data, error } = useFetchAPI({ endpoint: `/user/${userID}`, token: user.token });
+const UserNew = (props) => {
+  // const user = getUser();
+  // const userID = location.pathname.split('/')[2];
+  // const { data, error } = useFetchAPI({ endpoint: `/user/${userID}`, token: user.token });
   const firstName = useInput('');
   const familyName = useInput('');
   const email = useInput('');
+
+  const { data } = props;
 
   useEffect(() => {
     if (!data) {
@@ -27,39 +25,33 @@ const UserNew = ({ location }) => {
     email.setValue(data.email);
   }, [data]);
 
-  const getContent = (dataContent, errorContent) => {
-    if (errorContent) {
-      return (
-        <p>{errorContent.message}</p>
-      );
-    }
-
+  const getContent = (dataContent) => {
     if (dataContent) {
       return (
         <UserForm
+          firstName={firstName}
+          familyName={familyName}
+          email={email}
           handleSubmit = {
             async (evt) => {
               evt.preventDefault();
               try {
                 await handleSubmit({
                   method: 'put',
-                  endpoint: `user/${userID}`,
+                  endpoint: `user/${props.id}`,
                   data: {
                     firstName: firstName.value,
                     familyName: familyName.value,
                     email: email.value,
                   },
-                  token: user.token,
+                  token: props.user.token,
                 });
-                navigate(`/user/${userID}`);
+                props.changeState(!props.editing);
               } catch (err) {
                 const { response } = err;
                 alert(response.data.message);
               }
-            }}
-          firstName={firstName}
-          familyName={familyName}
-          email={email} />
+            }} />
       );
     }
 
@@ -69,10 +61,9 @@ const UserNew = ({ location }) => {
   };
 
   return (
-    <div>
-      <h1>Edit User</h1>
-      {getContent(data, error)}
-    </div>
+    <>
+      {getContent(data)}
+    </>
   );
 };
 
