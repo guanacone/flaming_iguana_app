@@ -14,6 +14,7 @@ import { isLoggedIn, getUser } from '../services/auth';
 import hashEmail from '../utils/hashEmail';
 import Logo from './Img_Components/Logo';
 import UserEdit from './UserEdit';
+import PasswordEdit from './PasswordEdit';
 
 const StyledSection = styled.section`
   display: flex;
@@ -100,6 +101,7 @@ const User = ({ id }) => {
   const user = getUser();
   const { user: loggedInUser } = jwt.decode(user.token);
   const [editing, setEditing] = useState(false);
+  const [passwordEdit, setPasswordEdit] = useState(false);
   const [{ data, loading, error }, refetch] = useAxios({
     url: `/user/${id}`,
     headers: { Authorization: `Bearer ${user.token}` },
@@ -127,7 +129,7 @@ const User = ({ id }) => {
             }
             <img src={`https://www.gravatar.com/avatar/${hashEmail(data.email)}?s=200`} />
             { loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')
-              ? <Link to={'#'}>
+              ? <Link to={'#'} onClick={() => setPasswordEdit(true)}>
                 <div className='icon-wrapper'>
                   <FontAwesomeIcon className='icon' icon={faLock}/>
                   <span>CHANGE PASSWORD</span>
@@ -137,13 +139,13 @@ const User = ({ id }) => {
             }
             {loggedInUser.roles && loggedInUser.roles.find((role) => role === 'admin')
               ? <button type='button' onClick={() => deleteUser(`user/${id}`)}>
-                <FontAwesomeIcon className='icon' icon={faUserTimes}/>DELETE ACCOUNT
+                <FontAwesomeIcon className='icon' icon={faUserTimes} onClick={() => deleteUser(`/user/${id}`)}/>DELETE ACCOUNT
               </button>
               : null
             }
           </aside>
           <center>
-            {!editing
+            {!editing && !passwordEdit
               ? <>
                 <h3>{data.firstName} {data.familyName}
                   { loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')
@@ -155,10 +157,18 @@ const User = ({ id }) => {
                 <h4>Biography:</h4>
                 <p>{data.biography }</p>
               </>
-              : <UserEdit
+              : null
+            }
+            {editing
+              ? <UserEdit
                 data={data} id={id} user={user} setEditing={setEditing}
               />
-            }
+              : null}
+            {passwordEdit
+              ? <PasswordEdit
+                data={data} id={id} user={user} setPasswordEdit={setPasswordEdit}
+              />
+              : null}
           </center>
           <div className='right'>
             <Logo/>
