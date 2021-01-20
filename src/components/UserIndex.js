@@ -37,7 +37,7 @@ const StyledSection = styled.section`
     background: white;
     border-radius: 8px;
     width: 18vw;
-    min-width: 185px;
+    min-width: 210px;
     margin: 10px 10px;
     
     img {
@@ -49,14 +49,16 @@ const StyledSection = styled.section`
     a {
       text-decoration: none;
       text-align: center;
-      font: normal normal 600 22px/30px Open Sans;
+      font: normal normal 600 20px/30px Open Sans;
       letter-spacing: -0.33px;
       color: #333333;
       padding: 10px 10px 40px;
+      white-space: nowrap;
+      overflow: hidden; 
     }
   }
 
-  @media (max-width: 520px) {
+  @media (max-width: 575px) {
     .cards-wrapper { 
       flex-direction: column;
       align-items: center;
