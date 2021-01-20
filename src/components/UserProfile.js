@@ -7,6 +7,8 @@ import jwt from 'jsonwebtoken';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPen,
+  faLock,
+  faUserTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { isLoggedIn, getUser } from '../services/auth';
 import hashEmail from '../utils/hashEmail';
@@ -27,6 +29,29 @@ const StyledSection = styled.section`
     letter-spacing: -0.21px;
   }
 
+  a {
+    border: 0.5px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    font-family: Open Sans;
+    text-align: left;
+  }
+
+  button {
+    border: 0.5px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    font-family: Open Sans;
+    text-align: left;
+    background: none;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+
   .left {
     display: flex;
     flex-direction: column;
@@ -41,11 +66,6 @@ const StyledSection = styled.section`
   center {
     flex-grow: 2;
     text-align: left;
-
-    .icon {
-      cursor: pointer;
-      padding-left: 10px;
-    }
   }
 
   .right {
@@ -53,23 +73,11 @@ const StyledSection = styled.section`
     flex-grow: 1;
   }
 
-`;
-
-const DeleteButton = styled.button`
-  background: none;
-  border: none;
-  padding: 0;
-  color: #007bff;
-  cursor: pointer;
-
-  &:hover{
-  color: #0056b3;
-  text-decoration: underline;
+  .icon {
+    width: 50px;
+    cursor: pointer;
   }
 
-  &:focus{
-    outline: none;
-  }
 `;
 
 const deleteUser = async (endpoint) => {
@@ -119,13 +127,18 @@ const User = ({ id }) => {
             }
             <img src={`https://www.gravatar.com/avatar/${hashEmail(data.email)}?s=200`} />
             { loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')
-              ? <Link to={'#'}>Edit Password</Link>
+              ? <Link to={'#'}>
+                <div className='icon-wrapper'>
+                  <FontAwesomeIcon className='icon' icon={faLock}/>
+                  <span>CHANGE PASSWORD</span>
+                </div>
+              </Link>
               : null
             }
             {loggedInUser.roles && loggedInUser.roles.find((role) => role === 'admin')
-              ? <DeleteButton type='button' onClick={() => deleteUser(`user/${id}`)}>
-                Delete User
-              </DeleteButton>
+              ? <button type='button' onClick={() => deleteUser(`user/${id}`)}>
+                <FontAwesomeIcon className='icon' icon={faUserTimes}/>DELETE ACCOUNT
+              </button>
               : null
             }
           </aside>
