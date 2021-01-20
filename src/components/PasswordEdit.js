@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import useInput from '../hooks/useInput';
 import handleSubmit from '../utils/handleSubmit';
 import SubmitButton from './Buttons/SubmitButton';
@@ -8,8 +9,14 @@ const PasswordEdit = (props) => {
   const newPassword = useInput('');
   const confirmNewPassword = useInput('');
 
+  const StyledForm = styled.form`
+    .submit-button {
+      margin-bottom: 10px;
+    }
+  `;
+
   return (
-    <form onSubmit={
+    <StyledForm onSubmit={
       async (evt) => {
         evt.preventDefault();
         if (newPassword.value !== confirmNewPassword.value) {
@@ -41,8 +48,9 @@ const PasswordEdit = (props) => {
       <label>
         <input type='password' placeholder='CONFIRME NEW PASSWORD' required {...confirmNewPassword.bind} />
       </label>
-      <SubmitButton name='CHANGE PASSWORD' />
-    </form>
+      <SubmitButton name='CHANGE PASSWORD'/>
+      <SubmitButton name='CANCEL' handleClick={() => props.setPasswordEdit(false)} />
+    </StyledForm>
   );
 };
 
