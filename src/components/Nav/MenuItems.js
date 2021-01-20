@@ -10,7 +10,8 @@ import {
   faUsers,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, navigate } from 'gatsby';
-import { isLoggedIn, logout } from '../../services/auth';
+import jwt from 'jsonwebtoken';
+import { getUser, isLoggedIn, logout } from '../../services/auth';
 
 const handleLogout = async (evt) => {
   evt.preventDefault();
@@ -123,6 +124,8 @@ const NavWrapper = styled.div`
 `;
 
 const MenuItems = ({ open, menuRef }) => {
+  const { token } = getUser();
+
   return (
     <NavWrapper ref={menuRef} open={open}>
       <div className='masker'></div>
@@ -141,7 +144,7 @@ const MenuItems = ({ open, menuRef }) => {
                 <span>USERS</span>
               </div>
             </Link>
-            <Link to={'/user'}>
+            <Link to={`/user/${jwt.decode(token).user._id}`}>
               <div className='icon-wrapper'>
                 <FontAwesomeIcon className='icon' icon={faUserCircle} />
                 <span>PROFILE</span>
