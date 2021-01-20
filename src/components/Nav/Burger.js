@@ -18,7 +18,6 @@ const StyledBurger = styled.div`
     cursor: pointer;
     width: 2rem;
     height: 0.25rem;
-    background: #ccc;
     border-radius: 10px;
     transform-origin: 1px;
     transition: all 0.3s linear;
@@ -64,7 +63,7 @@ const Burger = () => {
 
   return (
     <>
-      <StyledBurger ref={burgerRef} open={open} onClick={() => setOpen(!open)}>
+      <StyledBurger className='burger' ref={burgerRef} open={open} onClick={() => setOpen(!open)}>
         <div/>
         <div/>
         <div/>
