@@ -8,10 +8,12 @@ const StyledInput = styled.input`
     color: #FFFFFF;
     text-transform: uppercase;
     opacity: 1;
+    cursor: pointer;
+    border: 1px solid white;
 `;
 
-const SubmitButton = () => (
-  <StyledInput className='submit-button' type='submit' value='Submit' />
+const SubmitButton = (props) => (
+  <StyledInput className='submit-button' type='submit' value={props.name} />
 );
 
 export default SubmitButton;
