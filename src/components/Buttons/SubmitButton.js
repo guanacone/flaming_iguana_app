@@ -13,7 +13,7 @@ const StyledInput = styled.input`
 `;
 
 const SubmitButton = (props) => (
-  <StyledInput className='submit-button' type='submit' value={props.name} />
+  <StyledInput className='submit-button' type='submit' value={props.name} onClick={props.handleClick}/>
 );
 
 export default SubmitButton;
