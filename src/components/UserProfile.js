@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, navigate } from 'gatsby';
 import axios from 'axios';
+import useAxios from 'axios-hooks';
 import styled from 'styled-components';
 import jwt from 'jsonwebtoken';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPen,
 } from '@fortawesome/free-solid-svg-icons';
-// import useFetchAPI from '../hooks/useFetchAPI';
 import { isLoggedIn, getUser } from '../services/auth';
 import hashEmail from '../utils/hashEmail';
 import Logo from './Img_Components/Logo';
@@ -15,7 +15,6 @@ import UserEdit from './UserEdit';
 
 const StyledSection = styled.section`
   display: flex;
-  /* border: 1px solid black; */
   margin: 0 7.5vw;
   
   h1, h2 {
@@ -29,19 +28,17 @@ const StyledSection = styled.section`
   }
 
   .left {
-    /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
     margin-right: 50px;
     img {
       border: 6px solid #FFF;
       border-radius: 50%;
-      margin: 30px 0;
+      margin: 30px 10px;
     } 
   }
   
   center {
-    /* border: 1px solid black; */
     flex-grow: 2;
     text-align: left;
 
@@ -52,7 +49,6 @@ const StyledSection = styled.section`
   }
 
   .right {
-    /* border: 1px solid black; */
     margin-left: 50px;
     flex-grow: 1;
   }
@@ -96,26 +92,13 @@ const User = ({ id }) => {
   const user = getUser();
   const { user: loggedInUser } = jwt.decode(user.token);
   const [editing, setEditing] = useState(false);
-  const changeState = (value) => {
-    setEditing(value);
-  };
-  // const { data, error } = useFetchAPI({ endpoint: `/user/${id}`, token: user.token });
-
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+  const [{ data, loading, error }, refetch] = useAxios({
+    url: `/user/${id}`,
+    headers: { Authorization: `Bearer ${user.token}` },
+  });
 
   useEffect(() => {
-    (async () => {
-      try {
-        const result = await axios({
-          url: `/user/${id}`,
-          headers: { Authorization: `Bearer ${user.token}` },
-        });
-        setData(result.data);
-      } catch (err) {
-        setError(err);
-      }
-    })();
+    refetch();
   }, [editing]);
 
   return (
@@ -160,7 +143,7 @@ const User = ({ id }) => {
                 <p>{data.biography }</p>
               </>
               : <UserEdit
-                data={data} id={id} user={user} editing={editing} changeState={changeState}
+                data={data} id={id} user={user} setEditing={setEditing}
               />
             }
           </center>
@@ -169,6 +152,10 @@ const User = ({ id }) => {
           </div>
         </>
         : null}
+      {loading
+        ? <p>...loading</p>
+        : null
+      }
     </StyledSection>
   );
 };
