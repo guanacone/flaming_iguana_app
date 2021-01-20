@@ -32,11 +32,11 @@ const StyledSection = styled.section`
     /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
+    margin-right: 50px;
     img {
-      /* width: 80%; */
       border: 6px solid #FFF;
       border-radius: 50%;
-      margin: 30px 50px;
+      margin: 30px 0;
     } 
   }
   
@@ -47,6 +47,7 @@ const StyledSection = styled.section`
 
     .icon {
       cursor: pointer;
+      padding-left: 10px;
     }
   }
 
@@ -126,8 +127,13 @@ const User = ({ id }) => {
       {data
         ? <>
           <aside className='left'>
-            <h1>User Profile</h1>
-            <h2>User: {id}</h2>
+            { loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')
+              ? <>
+                <h1>Your Profile</h1>
+                <h2>User: {id}</h2>
+              </>
+              : null
+            }
             <img src={`https://www.gravatar.com/avatar/${hashEmail(data.email)}?s=200`} />
             { loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')
               ? <Link to={'#'}>Edit Password</Link>
@@ -144,7 +150,11 @@ const User = ({ id }) => {
             {!editing
               ? <>
                 <h3>{data.firstName} {data.familyName}
-                  <FontAwesomeIcon className='icon' icon={faPen} onClick={() => setEditing(true)}/></h3>
+                  { loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')
+                    ? <FontAwesomeIcon className='icon' icon={faPen} onClick={() => setEditing(true)}/>
+                    : null
+                  }
+                </h3>
                 <h4>{data.email}</h4>
                 <h4>Biography:</h4>
                 <p>{data.biography }</p>
