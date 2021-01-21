@@ -6,10 +6,10 @@ import handleSubmit from '../utils/handleSubmit';
 import SubmitButton from './Buttons/SubmitButton';
 
 const StyledForm = styled.form`
-    .submit-button {
-      margin-bottom: 10px;
-    }
-  `;
+  .submit-button {
+    margin-bottom: 10px;
+  }
+`;
 const PasswordEdit = (props) => {
   const oldPassword = useInput('');
   const newPassword = useInput('');

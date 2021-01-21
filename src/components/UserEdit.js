@@ -52,7 +52,7 @@ const UserNew = (props) => {
                     familyName: familyName.value,
                     email: email.value,
                   },
-                  token: user.token,
+                  token: props.user.token,
                 });
                 props.setEditing(false);
               } catch (err) {
