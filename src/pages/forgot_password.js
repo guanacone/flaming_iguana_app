@@ -22,6 +22,11 @@ const StyledSection = styled.section`
       font: normal normal 300 18px/28px Open Sans;
       letter-spacing: -0.27px;
       color: #939393;
+    }
+
+    .submit-button {
+      color: white;
+      background: var(--green);
     }  
 `;
 
@@ -68,7 +73,7 @@ const ForgotPassword = () => {
           <label>
             <input type='email' placeholder='Email' required {...userEmail.bind}/>
           </label>
-          <SubmitButton/>
+          <SubmitButton>SEND RESET EMAIL</SubmitButton>
         </form>
       </div>
     </StyledSection>

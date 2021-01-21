@@ -1,19 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import useInput from '../hooks/useInput';
+import { getUser } from '../services/auth';
 import handleSubmit from '../utils/handleSubmit';
 import SubmitButton from './Buttons/SubmitButton';
 
-const PasswordEdit = (props) => {
-  const oldPassword = useInput('');
-  const newPassword = useInput('');
-  const confirmNewPassword = useInput('');
-
-  const StyledForm = styled.form`
+const StyledForm = styled.form`
     .submit-button {
       margin-bottom: 10px;
     }
   `;
+const PasswordEdit = (props) => {
+  const oldPassword = useInput('');
+  const newPassword = useInput('');
+  const confirmNewPassword = useInput('');
+  const user = getUser();
 
   return (
     <StyledForm onSubmit={
@@ -30,7 +31,7 @@ const PasswordEdit = (props) => {
                 oldPassword: oldPassword.value,
                 newPassword: newPassword.value,
               },
-              token: props.user.token,
+              token: user.token,
             });
             props.setPasswordEdit(false);
           } catch (err) {
@@ -46,10 +47,10 @@ const PasswordEdit = (props) => {
         <input type='password' placeholder='NEW PASSWORD' required {...newPassword.bind} />
       </label>
       <label>
-        <input type='password' placeholder='CONFIRME NEW PASSWORD' required {...confirmNewPassword.bind} />
+        <input type='password' placeholder='CONFIRM NEW PASSWORD' required {...confirmNewPassword.bind} />
       </label>
-      <SubmitButton name='CHANGE PASSWORD'/>
-      <SubmitButton name='CANCEL' handleClick={() => props.setPasswordEdit(false)} />
+      <SubmitButton>CHANGE PASSWORD</SubmitButton>
+      <SubmitButton onClick={() => props.setPasswordEdit(false)}>CANCEL</SubmitButton>
     </StyledForm>
   );
 };

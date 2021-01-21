@@ -4,6 +4,7 @@ import UserForm from './UserForm';
 import useInput from '../hooks/useInput';
 import handleSubmit from '../utils/handleSubmit';
 import SubmitButton from './Buttons/SubmitButton';
+import { getUser } from '../services/auth';
 
 const StyledDiv = styled.div`
   display: flex;
@@ -11,15 +12,16 @@ const StyledDiv = styled.div`
   align-items: center;
 
   .submit-button {
-    margin-bottom: 10px;
-  }
+      margin-bottom: 10px;
+      text-align: center;
+    }
 `;
 
 const UserNew = (props) => {
   const firstName = useInput('');
   const familyName = useInput('');
   const email = useInput('');
-
+  const user = getUser();
   const { data } = props;
 
   useEffect(() => {
@@ -50,7 +52,7 @@ const UserNew = (props) => {
                     familyName: familyName.value,
                     email: email.value,
                   },
-                  token: props.user.token,
+                  token: user.token,
                 });
                 props.setEditing(false);
               } catch (err) {
@@ -60,7 +62,7 @@ const UserNew = (props) => {
             }
           }
         />
-        <SubmitButton name='CANCEL CHANGES' handleClick={() => props.setEditing(false)}/>
+        <SubmitButton onClick={() => props.setEditing(false)}>CANCEL</SubmitButton>
       </StyledDiv>
     );
   }
