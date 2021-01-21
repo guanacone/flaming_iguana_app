@@ -95,12 +95,10 @@ const User = ({ id }) => {
 
   return (
     <StyledSection>
-      {error
-        ? <p>{error.message}</p>
-        : null
-      }
-      {data
-        ? <>
+      {error && (<p>{error.message}</p>)}
+
+      {data && (
+        <>
           <aside className='left'>
             { loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')
               ? <>
@@ -127,40 +125,33 @@ const User = ({ id }) => {
             }
           </aside>
           <center>
-            {!editing && !passwordEdit
-              ? <>
+            {(!editing && !passwordEdit) && (
+              <>
                 <h3>{data.firstName} {data.familyName}
-                  { loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')
-                    ? <FontAwesomeIcon className='icon' icon={faPen} onClick={() => setEditing(true)}/>
-                    : null
-                  }
+                  {(loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')) && (<FontAwesomeIcon className='icon' icon={faPen} onClick={() => setEditing(true)}/>)}
                 </h3>
                 <p>{data.email}</p>
                 <h4>Biography:</h4>
                 <p>{data.biography }</p>
               </>
-              : null
-            }
-            {editing
-              ? <UserEdit
+            )}
+            {editing && (
+              <UserEdit
                 data={data} id={id} setEditing={setEditing}
               />
-              : null}
-            {passwordEdit
-              ? <PasswordEdit
+            )}
+            {passwordEdit && (
+              <PasswordEdit
                 data={data} id={id} setPasswordEdit={setPasswordEdit}
               />
-              : null}
+            )}
           </center>
           <div className='right'>
             <Logo/>
           </div>
         </>
-        : null}
-      {loading
-        ? <p>...loading</p>
-        : null
-      }
+      )}
+      {loading && (<p>...loading</p>)}
     </StyledSection>
   );
 };
