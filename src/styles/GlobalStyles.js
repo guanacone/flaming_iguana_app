@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyles = createGlobalStyle`
     :root {
         --green: #9ECF73;
+        --gray: #909090
     }
 
     body {
@@ -14,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     h1 {
+        color: ${({ isProtected }) => (isProtected ? 'white' : 'var(--gray)')};
         font: normal normal 300 40px/55px Open Sans;
         letter-spacing: -0.6px;
         opacity: 1;
@@ -69,6 +71,12 @@ const GlobalStyles = createGlobalStyle`
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .burger {
+        div {
+            background: ${({ isProtected }) => (isProtected ? 'white' : 'var(--gray)')};
+        }
     }
 
     @media(max-width: 700px) {
