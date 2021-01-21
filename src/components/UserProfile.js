@@ -15,6 +15,7 @@ import hashEmail from '../utils/hashEmail';
 import Logo from './Img_Components/Logo';
 import UserEdit from './UserEdit';
 import PasswordEdit from './PasswordEdit';
+import SubmitButton from './Buttons/SubmitButton';
 
 const StyledSection = styled.section`
   display: flex;
@@ -28,29 +29,6 @@ const StyledSection = styled.section`
   h2 {
     font: normal normal normal 14px/19px Open Sans;
     letter-spacing: -0.21px;
-  }
-
-  a {
-    border: 0.5px solid white;
-    border-radius: 10px;
-    padding: 10px;
-    color: white;
-    text-decoration: none;
-    font-family: Open Sans;
-    text-align: left;
-  }
-
-  button {
-    border: 0.5px solid white;
-    border-radius: 10px;
-    padding: 10px;
-    color: white;
-    text-decoration: none;
-    font-family: Open Sans;
-    text-align: left;
-    background: none;
-    margin-top: 20px;
-    cursor: pointer;
   }
 
   .left {
@@ -77,6 +55,10 @@ const StyledSection = styled.section`
   .icon {
     width: 50px;
     cursor: pointer;
+  }
+
+  .submit-button {
+    color: white;
   }
 
 `;
@@ -130,17 +112,17 @@ const User = ({ id }) => {
             <img src={`https://www.gravatar.com/avatar/${hashEmail(data.email)}?s=200`} />
             { loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')
               ? <Link to={'#'} onClick={() => setPasswordEdit(true)}>
-                <div className='icon-wrapper'>
+                <SubmitButton>
                   <FontAwesomeIcon className='icon' icon={faLock}/>
                   <span>CHANGE PASSWORD</span>
-                </div>
+                </SubmitButton>
               </Link>
               : null
             }
             {loggedInUser.roles && loggedInUser.roles.find((role) => role === 'admin')
-              ? <button type='button' onClick={() => deleteUser(`user/${id}`)}>
+              ? <SubmitButton onClick={() => deleteUser(`user/${id}`)}>
                 <FontAwesomeIcon className='icon' icon={faUserTimes} onClick={() => deleteUser(`/user/${id}`)}/>DELETE ACCOUNT
-              </button>
+              </SubmitButton>
               : null
             }
           </aside>
@@ -153,7 +135,7 @@ const User = ({ id }) => {
                     : null
                   }
                 </h3>
-                <h4>{data.email}</h4>
+                <p>{data.email}</p>
                 <h4>Biography:</h4>
                 <p>{data.biography }</p>
               </>
@@ -161,12 +143,12 @@ const User = ({ id }) => {
             }
             {editing
               ? <UserEdit
-                data={data} id={id} user={user} setEditing={setEditing}
+                data={data} id={id} setEditing={setEditing}
               />
               : null}
             {passwordEdit
               ? <PasswordEdit
-                data={data} id={id} user={user} setPasswordEdit={setPasswordEdit}
+                data={data} id={id} setPasswordEdit={setPasswordEdit}
               />
               : null}
           </center>
