@@ -25,9 +25,6 @@ const UserNew = (props) => {
   const { data } = props;
 
   useEffect(() => {
-    if (!data) {
-      return;
-    }
     firstName.setValue(data.firstName);
     familyName.setValue(data.familyName);
     email.setValue(data.email);
@@ -52,7 +49,7 @@ const UserNew = (props) => {
                     familyName: familyName.value,
                     email: email.value,
                   },
-                  token: props.user.token,
+                  token: user.token,
                 });
                 props.setEditing(false);
               } catch (err) {
