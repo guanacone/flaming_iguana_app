@@ -2,43 +2,49 @@ import React from 'react';
 import { Link, navigate } from 'gatsby';
 import get from 'lodash.get';
 import { useQueryParam, StringParam } from 'use-query-params';
+import useAxios from 'axios-hooks';
+import styled from 'styled-components';
 import { isLoggedIn } from '../services/auth';
-import useFetchAPI from '../hooks/useFetchAPI';
+import Logo from '../components/Img_Components/Logo';
+
+const StyledSection = styled.section`
+  text-align: center;
+    font: normal normal 300 18px/28px Open Sans;
+    letter-spacing: -0.27px;
+    color: #939393;
+`;
 
 const UserActivation = () => {
   if (isLoggedIn()) {
     navigate('/user');
   }
-  const [activationToken] = useQueryParam('activationToken', StringParam);
-  const { data, error } = useFetchAPI({ endpoint: '/user/activate_account', token: activationToken });
-  const getContent = (dataContent, errorContent) => {
-    if (errorContent) {
-      const axiosMsg = get(errorContent, ['response', 'data', 'message']);
-      if (axiosMsg) {
-        return <p>Your token has expired. Please <Link to={'/signup'}>sign up</Link> again</p>;
-      }
-      return (
-        <p>{errorContent.message}</p>
-      );
-    }
 
-    if (dataContent) {
-      return (
-        <>
-          <p>Your account has been activated. Please <Link to={'/login'}>log in</Link></p>
-        </>
-      );
-    }
-    return (
-      <p>loading...</p>
-    );
-  };
+  const [activationToken] = useQueryParam('activationToken', StringParam);
+  const [{ data, loading, error }] = useAxios({
+    url: '/user/activate_account',
+    headers: { Authorization: `Bearer ${activationToken}` },
+  });
+  const axiosMsg = get(error, ['response', 'data', 'message']);
 
   return (
-    <div>
-      <h1>Account activated</h1>
-      {getContent(data, error)}
-    </div>
+    <StyledSection className='container'>
+      <div className='logo-wrapper'>
+        <Logo/>
+      </div>
+      <div className='main-wrapper'>
+        <h1>Account Activation</h1>
+        {(error && axiosMsg) && (
+          <p>Your token has expired. Please <Link to={'/signup'}>sign up</Link> again</p>
+        )}
+        {error && (
+          <p>{error.message}</p>
+        )}
+        {data && (
+          <p>Your account has been activated. Please <Link to={'/login'}>log in</Link></p>
+        )}
+        {loading && (<p>...loading</p>)}
+      </div>
+    </StyledSection>
   );
 };
 
