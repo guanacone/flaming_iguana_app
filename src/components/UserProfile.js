@@ -100,29 +100,26 @@ const User = ({ id }) => {
       {data && (
         <>
           <aside className='left'>
-            { loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')
-              ? <>
+            { (loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')) && (
+              <>
                 <h1>Your Profile</h1>
                 <h2>User: {id}</h2>
               </>
-              : null
-            }
+            )}
             <img src={`https://www.gravatar.com/avatar/${hashEmail(data.email)}?s=200`} />
-            { loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')
-              ? <Link to={'#'} onClick={() => setPasswordEdit(true)}>
+            { (loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')) && (
+              <Link to={'#'} onClick={() => setPasswordEdit(true)}>
                 <SubmitButton>
                   <FontAwesomeIcon className='icon' icon={faLock}/>
                   <span>CHANGE PASSWORD</span>
                 </SubmitButton>
               </Link>
-              : null
-            }
-            {loggedInUser.roles && loggedInUser.roles.find((role) => role === 'admin')
-              ? <SubmitButton onClick={() => deleteUser(`user/${id}`)}>
+            )}
+            {(loggedInUser.roles && loggedInUser.roles.find((role) => role === 'admin')) && (
+              <SubmitButton onClick={() => deleteUser(`user/${id}`)}>
                 <FontAwesomeIcon className='icon' icon={faUserTimes} onClick={() => deleteUser(`/user/${id}`)}/>DELETE ACCOUNT
               </SubmitButton>
-              : null
-            }
+            )}
           </aside>
           <center>
             {(!editing && !passwordEdit) && (
