@@ -89,6 +89,9 @@ const User = ({ id }) => {
     url: `/user/${id}`,
     headers: { Authorization: `Bearer ${user.token}` },
   });
+  useEffect(() => {
+    navigate(`/user/${id}`);
+  });
 
   useEffect(() => {
     refetch();
