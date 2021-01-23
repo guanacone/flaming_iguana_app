@@ -76,6 +76,7 @@ const deleteUser = async (endpoint) => {
 };
 
 const User = ({ id }) => {
+  if (typeof window === 'undefined') return null;
   if (!isLoggedIn()) {
     navigate('/login');
   }
