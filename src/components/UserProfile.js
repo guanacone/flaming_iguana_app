@@ -148,7 +148,7 @@ const User = ({ id }) => {
           </div>
         </>
       )}
-      {loading && (<p>...loading</p>)}
+      {(!data && loading) && (<p>...loading</p>)}
     </StyledSection>
   );
 };
