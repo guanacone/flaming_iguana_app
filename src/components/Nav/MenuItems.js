@@ -124,16 +124,16 @@ const NavWrapper = styled.div`
 `;
 
 const MenuItems = ({ open, menuRef }) => {
-  const [hasMounted, setHasMounted] = React.useState(false);
+  // const [hasMounted, setHasMounted] = React.useState(false);
   const { token } = getUser();
 
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setHasMounted(true);
+  // }, []);
 
-  if (!hasMounted) {
-    return null;
-  }
+  // if (!hasMounted) {
+  //   return null;
+  // }
 
   return (
     <NavWrapper ref={menuRef} open={open}>

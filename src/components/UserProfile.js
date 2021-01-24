@@ -76,7 +76,7 @@ const deleteUser = async (endpoint) => {
 };
 
 const User = ({ id }) => {
-  const [hasMounted, setHasMounted] = React.useState(false);
+  // const [hasMounted, setHasMounted] = React.useState(false);
   if (!isLoggedIn()) {
     navigate('/login');
   }
@@ -89,17 +89,17 @@ const User = ({ id }) => {
     url: `/user/${id}`,
     headers: { Authorization: `Bearer ${user.token}` },
   });
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setHasMounted(true);
+  // }, []);
 
   useEffect(() => {
     refetch();
   }, [editing]);
 
-  if (!hasMounted) {
-    return null;
-  }
+  // if (!hasMounted) {
+  //   return null;
+  // }
 
   return (
     <StyledSection>
