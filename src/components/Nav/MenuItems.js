@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -124,16 +124,7 @@ const NavWrapper = styled.div`
 `;
 
 const MenuItems = ({ open, menuRef }) => {
-  // const [hasMounted, setHasMounted] = React.useState(false);
   const { token } = getUser();
-
-  // useEffect(() => {
-  //   setHasMounted(true);
-  // }, []);
-
-  // if (!hasMounted) {
-  //   return null;
-  // }
 
   return (
     <NavWrapper ref={menuRef} open={open}>
