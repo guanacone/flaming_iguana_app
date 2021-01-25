@@ -14,12 +14,19 @@ const StyledWrapper = styled.div`
 `;
 
 const Layout = ({ location, children }) => {
+  const [hasMounted, setHasMounted] = React.useState(false);
+
   useEffect(() => {
+    setHasMounted(true);
     if (isLoggedIn()) {
       handleRefreshToken();
       setInterval(handleRefreshToken, 60e3 * 2 - 1e3);
     }
   }, []);
+
+  if (!hasMounted) {
+    return null;
+  }
 
   const regExPattern = /^(\/user)/;
   const isProtected = regExPattern.test(location.pathname);

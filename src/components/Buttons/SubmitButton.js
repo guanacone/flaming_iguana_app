@@ -1,17 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledInput = styled.input`
-    background: #9ECF73 0% 0% no-repeat padding-box;
-    font: normal normal 600 17px/23px Open Sans;
-    letter-spacing: 0.51px;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    opacity: 1;
+const StyledButton = styled.button`
+    border: 0.5px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: Open Sans;
+    margin-bottom: 20px;
+    cursor: pointer;
+    width: 302px;  
+    background: none;
 `;
 
-const SubmitButton = () => (
-  <StyledInput className='submit-button' type='submit' value='Submit' />
+const SubmitButton = (props) => (
+  <StyledButton className='submit-button' type='submit' onClick={props.onClick}>
+    {props.children}
+  </StyledButton>
 );
 
 export default SubmitButton;

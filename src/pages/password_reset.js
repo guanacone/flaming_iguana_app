@@ -75,7 +75,7 @@ const PasswordReset = () => {
           <label>
             <input type='password' placeholder='Confirm New Password' required {...confirmNewPassword.bind} />
           </label>
-          <SubmitButton/>
+          <SubmitButton>RESET PASSWORD</SubmitButton>
         </form>
       </div>
     </StyledSection>
