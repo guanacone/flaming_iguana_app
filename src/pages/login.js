@@ -26,6 +26,11 @@ const StyledSection = styled.section`
   .icon {
     padding-right: 5px;
   }
+
+  .submit-button {
+    color: white;
+    background: var(--green);
+  }
 `;
 
 const Login = () => {
@@ -54,7 +59,7 @@ const Login = () => {
             <input type='password' placeholder='Password' required {...password.bind} />
           </label>
           <Link to='/forgot_password'><FontAwesomeIcon className='icon' icon={faQuestionCircle}/>Forgot your password?</Link>
-          <SubmitButton/>
+          <SubmitButton>LOGIN</SubmitButton>
         </form>
       </div>
     </StyledSection>

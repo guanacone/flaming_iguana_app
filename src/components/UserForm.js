@@ -23,7 +23,7 @@ const UserForm = ({
         <input type='password' placeholder='Password' required minLength='6' {...password.bind} />
       </label>
       : null }
-    <SubmitButton/>
+    <SubmitButton>SUBMIT</SubmitButton>
   </form>
 );
 
