@@ -25,7 +25,6 @@ const UserActivation = () => {
     headers: { Authorization: `Bearer ${activationToken}` },
   });
   const axiosMsg = get(error, ['response', 'data', 'message']);
-
   return (
     <StyledSection className='container'>
       <div className='logo-wrapper'>
@@ -33,11 +32,8 @@ const UserActivation = () => {
       </div>
       <div className='main-wrapper'>
         <h1>Account Activation</h1>
-        {(error && axiosMsg) && (
-          <p>Your token has expired. Please <Link to={'/signup'}>sign up</Link> again</p>
-        )}
         {error && (
-          <p>{error.message}</p>
+          <p>{axiosMsg}</p>
         )}
         {data && (
           <p>Your account has been activated. Please <Link to={'/login'}>log in</Link></p>
