@@ -61,23 +61,19 @@ exports.createUser = async (req, res) => {
 
 //activate account
 exports.activateAccount = async(req, res) => {
-  try {
-    if (isTokenExpired(req)) throw createError(401, 'Expired activation token');
-    const userinstance = await User.findByIdAndUpdate(
-      req.user._id,
-      {
-        isActivated: true,
-        expireAt: null,
-      },
-      { new: true },
-    );
-    if (userinstance === null) {
-      throw createError(404, 'User not found');
-    }
-    return res.json(userinstance);
-  } catch(err) {
-    console.log(err);
+  if (isTokenExpired(req)) throw createError(401, 'Expired activation token');
+  const userinstance = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      isActivated: true,
+      expireAt: null,
+    },
+    { new: true },
+  );
+  if (userinstance === null) {
+    throw createError(404, 'User not found');
   }
+  return res.json(userinstance);
 };
 
 // show user
