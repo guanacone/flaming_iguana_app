@@ -8,7 +8,7 @@ const StyledButton = styled.button`
     font-family: Open Sans;
     margin-bottom: 20px;
     cursor: pointer;
-    width: 302px;  
+    width: 300px;  
     background: none;
 `;
 
