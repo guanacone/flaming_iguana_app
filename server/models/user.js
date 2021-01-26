@@ -10,6 +10,7 @@ const UserSchema = new Schema(
     password: { type: String, required: true },
     isActivated: { type: Boolean, default: false },
     roles: { type: Array, default: [] },
+    biography: { type: String, minlength: 80, maxlength: 160 },
     expireAt: { type: Date, default: null },
   },
 );
