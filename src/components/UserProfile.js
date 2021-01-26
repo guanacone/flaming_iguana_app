@@ -34,8 +34,10 @@ const StyledSection = styled.section`
   .left {
     display: flex;
     flex-direction: column;
-    margin-right: 50px;
+    align-items: center;
+    margin-right: 30px;
     img {
+      max-width: 200px;
       border: 6px solid #FFF;
       border-radius: 50%;
       margin: 30px 10px;
@@ -48,8 +50,7 @@ const StyledSection = styled.section`
   }
 
   .right {
-    margin-left: 50px;
-    flex-grow: 1;
+    margin-left: 30px;
   }
 
   .icon {
@@ -59,6 +60,21 @@ const StyledSection = styled.section`
 
   .submit-button {
     color: white;
+  }
+
+  @media(max-width: 850px) {
+    flex-direction: column;
+    align-items: center;
+
+    .left, .right {
+      margin: 0;
+    }
+
+    .left {
+      h1, h2 {
+        text-align: center;
+      }
+    }
   }
 
 `;
