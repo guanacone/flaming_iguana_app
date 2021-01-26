@@ -31,7 +31,7 @@ const UserNew = (props) => {
     email.setValue(data.email);
     biography.setValue(data.biography);
   }, [data]);
-  console.log(biography.value, biography.value.length);
+
   if (data) {
     return (
       <StyledDiv>
