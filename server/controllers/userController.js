@@ -90,7 +90,7 @@ exports.showUser = async (req, res) => {
 };
 
 // update user
-exports.updateUser = async (req, res, next) => {
+exports.updateUser = async (req, res) => {
   try {
     const userinstance = await User.findByIdAndUpdate(
       req.params.id,
@@ -98,6 +98,7 @@ exports.updateUser = async (req, res, next) => {
         firstName: req.body.firstName,
         familyName: req.body.familyName,
         email: req.body.email,
+        biography: req.body.biography,
       },
       { new: true },
     );
@@ -106,7 +107,8 @@ exports.updateUser = async (req, res, next) => {
     }
     return res.json(userinstance);
   } catch(err) {
-    next(checkMongoError(err));
+    checkMongoError(err);
+    throw err;
   }
 };
 

@@ -21,6 +21,7 @@ const UserNew = (props) => {
   const firstName = useInput('');
   const familyName = useInput('');
   const email = useInput('');
+  const biography = useInput('');
   const user = getUser();
   const { data } = props;
 
@@ -28,8 +29,9 @@ const UserNew = (props) => {
     firstName.setValue(data.firstName);
     familyName.setValue(data.familyName);
     email.setValue(data.email);
+    biography.setValue(data.biography);
   }, [data]);
-
+  console.log(biography.value, biography.value.length);
   if (data) {
     return (
       <StyledDiv>
@@ -37,6 +39,7 @@ const UserNew = (props) => {
           firstName={firstName}
           familyName={familyName}
           email={email}
+          biography={biography}
           handleSubmit = {
             async (evt) => {
               evt.preventDefault();
@@ -48,6 +51,7 @@ const UserNew = (props) => {
                     firstName: firstName.value,
                     familyName: familyName.value,
                     email: email.value,
+                    biography: biography.value,
                   },
                   token: user.token,
                 });
