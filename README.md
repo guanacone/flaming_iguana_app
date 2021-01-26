@@ -5,6 +5,8 @@ To Do:
 ~~refactor closing nav modal with outside click using React ref
 https://stackoverflow.com/questions/32553158/detect-click-outside-react-component~~
 
-Create component to wrapp pages/components holding forms in order to style them via styled components an not `GlobalStyles`
+Create component to wrapp pages/components holding forms in order to style them via styled components an not `GlobalStyles`.
 
-Replace all `useFetchAPI` with `axiosHook`
+Replace all `useFetchAPI` with `axiosHook`.
+
+Set up data validation for mongoDB on update.
