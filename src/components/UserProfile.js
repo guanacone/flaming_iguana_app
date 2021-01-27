@@ -62,7 +62,7 @@ const StyledSection = styled.section`
     color: white;
   }
 
-  @media(max-width: 850px) {
+  @media(max-width: 950px) {
     flex-direction: column;
     align-items: center;
 
