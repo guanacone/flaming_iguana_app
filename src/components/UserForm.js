@@ -9,6 +9,7 @@ background: #FFFFFF 0% 0% no-repeat padding-box;
         opacity: 1;
         width: 302px;
         resize: none;
+        margin-bottom: 25px;
 
         ::placeholder {
         text-align: left;
@@ -34,7 +35,7 @@ const UserForm = ({
     {password && (
       <input type='password' placeholder='Password' required minLength='6' {...password.bind}/>)}
     {biography && (
-      <StyledTextarea placeholder='Biography' rows='15' required maxLength='50' {...biography.bind}/>)}
+      <StyledTextarea placeholder='Biography' rows='15' maxLength='160' {...biography.bind}/>)}
     <SubmitButton>SUBMIT</SubmitButton>
   </form>
 );
