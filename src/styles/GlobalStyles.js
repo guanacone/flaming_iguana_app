@@ -29,10 +29,6 @@ const GlobalStyles = createGlobalStyle`
         align-items: center;
     }
 
-    label {
-        margin-bottom: 25px;
-    }
-
     input {
         background: #FFFFFF 0% 0% no-repeat padding-box;
         border: 1px solid #CECED0;
@@ -40,6 +36,7 @@ const GlobalStyles = createGlobalStyle`
         opacity: 1;
         width: 302px;
         height: 40px;
+        margin-bottom: 25px;
 
         ::placeholder {
         text-align: left;
