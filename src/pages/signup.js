@@ -22,12 +22,7 @@ const StyledSection = styled.section`
     font: normal normal 300 18px/28px Open Sans;
     letter-spacing: -0.27px;
     color: #939393;
-  }
-
-  .submit-button {
-    color: white;
-    background: var(--green);
-  }  
+  } 
 `;
 
 const UserNew = () => {

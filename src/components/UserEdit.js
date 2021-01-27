@@ -10,11 +10,6 @@ const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .submit-button {
-      margin-bottom: 10px;
-      text-align: center;
-    }
 `;
 
 const UserNew = (props) => {
