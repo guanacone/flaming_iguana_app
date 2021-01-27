@@ -6,19 +6,20 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   padding: 5px;
+  min-height: 55px;
   z-index: 1;
 
   .logo {
-    font-size: 30px;
+    font-size: 4vw;
     font-family: 'Aleo';
     font-weight: bold;
     }
-
+/* 
   @media (max-width: 500px) {
     .logo {
       font-size: 20px;
     }
-  } 
+  }  */
 `;
 
 const Navbar = () => {
