@@ -1,15 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import useInput from '../hooks/useInput';
 import { getUser } from '../services/auth';
 import handleSubmit from '../utils/handleSubmit';
 import SubmitButton from './Buttons/SubmitButton';
 
-const StyledForm = styled.form`
-  .submit-button {
-    margin-bottom: 10px;
-  }
-`;
 const PasswordEdit = (props) => {
   const oldPassword = useInput('');
   const newPassword = useInput('');
@@ -17,7 +11,7 @@ const PasswordEdit = (props) => {
   const user = getUser();
 
   return (
-    <StyledForm onSubmit={
+    <form onSubmit={
       async (evt) => {
         evt.preventDefault();
         if (newPassword.value !== confirmNewPassword.value) {
@@ -51,7 +45,7 @@ const PasswordEdit = (props) => {
       </label>
       <SubmitButton>CHANGE PASSWORD</SubmitButton>
       <SubmitButton onClick={() => props.setPasswordEdit(false)}>CANCEL</SubmitButton>
-    </StyledForm>
+    </form>
   );
 };
 

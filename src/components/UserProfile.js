@@ -41,6 +41,9 @@ const StyledSection = styled.section`
       border: 6px solid #FFF;
       border-radius: 50%;
       margin: 30px 10px;
+    }
+    button {
+      text-align: left;
     } 
   }
   
@@ -58,10 +61,6 @@ const StyledSection = styled.section`
     cursor: pointer;
   }
 
-  .submit-button {
-    color: white;
-  }
-
   @media(max-width: 950px) {
     flex-direction: column;
     align-items: center;
@@ -76,7 +75,6 @@ const StyledSection = styled.section`
       }
     }
   }
-
 `;
 
 const deleteUser = async (endpoint) => {

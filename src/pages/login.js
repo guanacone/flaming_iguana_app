@@ -26,11 +26,6 @@ const StyledSection = styled.section`
   .icon {
     padding-right: 5px;
   }
-
-  .submit-button {
-    color: white;
-    background: var(--green);
-  }
 `;
 
 const Login = () => {
