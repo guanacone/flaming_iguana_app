@@ -33,7 +33,7 @@ const UserActivation = () => {
       <div className='main-wrapper'>
         <h1>Account Activation</h1>
         {error && (
-          <p>{axiosMsg}</p>
+          <p>{axiosMsg || 'An unknown error ocurred. Please try again.'}</p>
         )}
         {data && (
           <p>Your account has been activated. Please <Link to={'/login'}>log in</Link></p>
