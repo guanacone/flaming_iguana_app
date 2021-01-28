@@ -8,8 +8,13 @@ const StyledButton = styled.button`
     font-family: Open Sans;
     margin-bottom: 20px;
     cursor: pointer;
-    width: 300px;  
-    background: none;
+    width: 302px;  
+    background: var(--green);
+    color: white;
+    :hover {
+      background: #3D3D3D;
+      border: 0.5px solid #3D3D3D;
+    }
 `;
 
 const SubmitButton = (props) => (
