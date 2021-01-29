@@ -10,16 +10,10 @@ const Nav = styled.nav`
   z-index: 1;
 
   .logo {
-    font-size: 4vw;
+    font-size: 3vw;
     font-family: 'Aleo';
     font-weight: bold;
     }
-/* 
-  @media (max-width: 500px) {
-    .logo {
-      font-size: 20px;
-    }
-  }  */
 `;
 
 const Navbar = () => {
