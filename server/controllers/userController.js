@@ -165,7 +165,30 @@ exports.sendResetPasswordLink = async (req, res) => {
     });
 };
 
+// rest password
+exports.resetPassword = async (req, res) => {
+  const newHashedPassword = await bcrypt.hash(req.body.newPassword, 10);
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      password: newHashedPassword,
+    },
+    { new: true },
+  );
+  if (user === null) {
+    throw createError(404, 'User not found');
+  }
+  return res.json(user);
+};
 
+// destroy user
+exports.destroyUser = async (req, res) => {
+  const deletedUser = await User.findByIdAndRemove(req.params.id);
+  if (deletedUser === null) {
+    throw createError(404, 'User not found');
+  }
+  return res.json(deletedUser);
+};
 
 // login user
 exports.loginUser = async (req, res, next) => {
