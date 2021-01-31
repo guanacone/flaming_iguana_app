@@ -40,7 +40,7 @@
     "http-errors": "1.8.0",
     "jsonwebtoken": "8.5.1",
     "lodash.get": "4.4.2",
-    "mailgun.js": "2.0.6",
+    "mailgun-js": "0.22.0",
     "md5": "2.3.0",
     "mongoose": "5.11.9",
     "normalize.css": "8.0.1",
