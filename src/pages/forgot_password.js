@@ -61,8 +61,7 @@ const ForgotPassword = () => {
                 setTimeout(() => navigate('/'), 1e4);
               } catch (err) {
                 const { response } = err;
-                console.log(response);
-                // alert(response.data.message);
+                alert(response.data.message);
               }
             }
           }>
