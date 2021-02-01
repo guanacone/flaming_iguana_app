@@ -24,7 +24,7 @@ export const handleLogin = async ({ email, password }) => {
   } catch (err) {
     const axiosMsg = get(err, ['response', 'data', 'message']);
     console.error(`error: ${err}, ${axiosMsg}`);
-    if (axiosMsg === 'Unactivated account') return navigate('/activateAccount');
+    if (axiosMsg === 'Unactivated account') return alert('Please activate your account by following the link with sent you.');
     return alert('Invalid email/password combination');
   }
 };

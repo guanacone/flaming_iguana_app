@@ -7,6 +7,7 @@ const { sendEmail } = require('../utils/sendEmail');
 const { extractTokenFromHeader, isTokenExpired } = require('../utils/tokenUtil');
 const { frontEndURL } = require('../utils/frontEndURL');
 const bcrypt = require('bcrypt');
+const path = require('path');
 
 const checkMongoError = (ex) => {
   if (ex.name === 'ValidationError') {
@@ -43,11 +44,15 @@ exports.createUser = async (req, res) => {
       .save();
     const body = { _id: newUser._id, email: newUser.email };
     const activationToken = jwt.sign({ user: body }, process.env.CONFIRMATION_TOKEN_SECRET, { expiresIn: '7d' });
+    const filepath = path.join(__dirname, '../images/email_conf_header.png');
     const data = {
       from: 'account_activation@rusca.dev',
       to: newUser.email,
       subject: 'Activate your account',
-      html: `<p>Please <a href=${frontEndURL}/account_activation?activationToken=${activationToken}>activate your account</a> by following the previous link`,
+      template: 'email_conf',
+      'v:name': newUser.firstName,
+      'v:url': `${frontEndURL}/account_activation?activationToken=${activationToken}`,
+      inline: [filepath],
     };
     await sendEmail(data);
     return res
@@ -141,12 +146,15 @@ exports.sendResetPasswordLink = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (user) {
     const body = { _id: user._id, email: user.email };
+    const filepath = path.join(__dirname, '../images/password_reset.png');
     const resetToken = jwt.sign({ user: body }, process.env.RESET_TOKEN_SECRET, { expiresIn: '30min' });
     const data = {
-      from: 'account_activation@rusca.dev',
+      from: 'password_reset@rusca.dev',
       to: user.email,
       subject: 'Reset your password',
-      html: `<p>Please reset your password <a href=${frontEndURL}/password_reset?resetToken=${resetToken}>here</a>.`,
+      template: 'lost_password',
+      'v:url': `${frontEndURL}/password_reset?resetToken=${resetToken}`,
+      inline: [filepath],
     };
     await sendEmail(data);
   }
