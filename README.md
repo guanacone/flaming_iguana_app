@@ -7,6 +7,8 @@ https://stackoverflow.com/questions/32553158/detect-click-outside-react-componen
 * Create component to wrapp pages/components holding forms in order to style them via styled components an not `GlobalStyles`.
 * Replace all `useFetchAPI` with `axiosHook`.
 * Set up data validation for mongoDB on update.
-* Style emails.
+* ~~Style emails.
+
+Live version available [here](https://enigmatic-hollows-26179.herokuapp.com/) (please allow 3-5 min for server to start)
 
 
