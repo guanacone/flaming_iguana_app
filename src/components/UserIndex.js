@@ -20,6 +20,7 @@ const StyledSection = styled.section`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: 50px;
   }
 
   .title-wrapper, .cards-wrapper {
@@ -37,21 +38,20 @@ const StyledSection = styled.section`
     border-radius: 8px;
     width: 18vw;
     min-width: 210px;
-    margin: 10px 10px;
-    
+    text-decoration: none;
+
     img {
       width: 80%;
       border-radius: 50%;
-      margin: 50px 10px 10px;
-    }  
+      margin: 30px 10px 10px;
+    }
 
-    a {
-      text-decoration: none;
+    span {
       text-align: center;
-      font: normal normal 600 20px/30px Open Sans;
+      font: normal normal 400 20px/30px Open Sans;
       letter-spacing: -0.33px;
       color: #333333;
-      padding: 10px 10px 40px;
+      padding: 10px 10px 50px;
       white-space: nowrap;
       overflow: hidden; 
     }
@@ -94,12 +94,12 @@ const UserIndex = () => {
         <>
           {dataContent.map((profile) => {
             return (
-              <div key={profile._id} className='card'>
+              <Link key={profile._id} className='card' to={`/user/${profile._id}`}>
                 <img src={`https://www.gravatar.com/avatar/${hashEmail(profile.email)}?s=200`} />
-                <Link to={`/user/${profile._id}`}>
+                <span>
                   {profile.firstName} {profile.familyName}
-                </Link>
-              </div>
+                </span>
+              </Link>
             );
           })}
         </>
