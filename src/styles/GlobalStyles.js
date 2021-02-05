@@ -40,11 +40,12 @@ const GlobalStyles = createGlobalStyle`
 
         ::placeholder {
         text-align: left;
-        font: normal normal 300 18px/24px Open Sans;
+        font-family: Open Sans;
+        font-size: 18px;
         letter-spacing: -0.27px;
         color: #939393;
-        padding-left: 10px;
         opacity: 1;
+        padding-left: 20px;
         }
     }
 
