@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const FooterWrapper = styled.footer`
  color: ${({ isProtected }) => (isProtected ? 'white' : '#909090')};
+ padding-bottom: 22px;
 
   h2 {
   font: normal normal 300 10px/14px Open Sans;
