@@ -55,7 +55,7 @@ const NavWrapper = styled.div`
     }
 
   @media (max-width: 500px) {
-    font-size: 20px;
+    font-size: 18px;
 
     .icon-wrapper {
       width: 30px;
@@ -112,7 +112,7 @@ const NavWrapper = styled.div`
         span {
             opacity: 1;
             color: lightgrey;
-            font-size: 20px;
+            font-size: 18px;
             padding-left: 15px;
             white-space: nowrap;
         }
