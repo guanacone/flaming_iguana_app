@@ -39,6 +39,7 @@ const StyledSection = styled.section`
     width: 18vw;
     min-width: 210px;
     text-decoration: none;
+    margin: 10px;
 
     img {
       width: 80%;
