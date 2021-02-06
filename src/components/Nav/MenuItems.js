@@ -72,6 +72,7 @@ const NavWrapper = styled.div`
                 text-decoration: underline;
             }
         }
+      margin: 5px 0;  
     }
 
     svg {
