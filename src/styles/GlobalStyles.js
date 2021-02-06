@@ -12,11 +12,14 @@ const GlobalStyles = createGlobalStyle`
         svg {
             color: ${({ isProtected }) => (isProtected ? 'white' : 'lightgrey')};
         }
+        font-family: Open Sans;        
     }
 
     h1 {
         color: ${({ isProtected }) => (isProtected ? 'white' : 'var(--gray)')};
-        font: normal normal 300 40px/55px Open Sans;
+        font-weight: 300;
+        font-size: 40px;
+        line-height: 55px;
         letter-spacing: -0.6px;
         opacity: 1;
         display: inline-block;
