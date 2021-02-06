@@ -33,13 +33,14 @@ const GlobalStyles = createGlobalStyle`
     }
 
     input {
-        background: #FFFFFF 0% 0% no-repeat padding-box;
         border: 1px solid #CECED0;
         border-radius: 8px;
         opacity: 1;
         width: 302px;
         height: 40px;
         margin-bottom: 25px;
+        color: #939393;
+        padding-left: 20px;
 
         ::placeholder {
         text-align: left;
