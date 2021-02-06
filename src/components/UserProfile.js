@@ -9,6 +9,7 @@ import {
   faPen,
   faLock,
   faUserTimes,
+  faImages,
 } from '@fortawesome/free-solid-svg-icons';
 import { isLoggedIn, getUser } from '../services/auth';
 import hashEmail from '../utils/hashEmail';
@@ -31,6 +32,11 @@ const StyledSection = styled.section`
     letter-spacing: -0.21px;
   }
 
+  center {
+    flex-grow: 2;
+    text-align: left;
+  }
+
   .left {
     display: flex;
     flex-direction: column;
@@ -47,11 +53,6 @@ const StyledSection = styled.section`
     } 
   }
   
-  center {
-    flex-grow: 2;
-    text-align: left;
-  }
-
   .right {
     margin-left: 30px;
   }
@@ -59,6 +60,24 @@ const StyledSection = styled.section`
   .icon {
     width: 50px;
     cursor: pointer;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 6px solid #FFF;
+    border-radius: 50%; 
+    position: relative;
+    top: -240px;
+    left: 160px;
+    background: var(--green);
+  }
+
+  .profile-icon {
+    
   }
 
   @media(max-width: 950px) {
@@ -120,7 +139,14 @@ const User = ({ id }) => {
                 <h2>User: {id}</h2>
               </>
             )}
-            <img src={`https://www.gravatar.com/avatar/${hashEmail(data.email)}?s=200`} />
+            <div className='image-wrapper'>
+              <img src={`https://www.gravatar.com/avatar/${hashEmail(data.email)}?s=200`} />
+              <Link to={'#'}>
+                <div className='icon-wrapper'>
+                  <FontAwesomeIcon className='profile-icon' icon={faImages}/>
+                </div>
+              </Link>
+            </div>
             { (loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')) && (
               <Link to={'#'} onClick={() => setPasswordEdit(true)}>
                 <SubmitButton>
@@ -157,9 +183,9 @@ const User = ({ id }) => {
               />
             )}
           </center>
-          <div className='right'>
+          <aside className='right'>
             <Logo/>
-          </div>
+          </aside>
         </>
       )}
       {(!data && loading) && (<p>...loading</p>)}
