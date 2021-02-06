@@ -32,9 +32,22 @@ const StyledSection = styled.section`
     letter-spacing: -0.21px;
   }
 
+  h3, h4 {
+    margin: 20px 0 5px;
+  }
+
+  p {
+    margin: 0;
+  }
+
   center {
+    position: relative;
+    top: -50px;
     flex-grow: 2;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .left {
@@ -46,7 +59,7 @@ const StyledSection = styled.section`
       max-width: 200px;
       border: 6px solid #FFF;
       border-radius: 50%;
-      margin: 30px 10px;
+      margin: 30px 10px -10px;
     }
     button {
       text-align: left;
@@ -58,7 +71,7 @@ const StyledSection = styled.section`
   }
 
   .icon {
-    width: 50px;
+    width: 35px;
     cursor: pointer;
   }
 
@@ -71,7 +84,7 @@ const StyledSection = styled.section`
     border: 6px solid #FFF;
     border-radius: 50%; 
     position: relative;
-    top: -240px;
+    top: -200px;
     left: 160px;
     background: var(--green);
   }
@@ -84,8 +97,13 @@ const StyledSection = styled.section`
     flex-direction: column;
     align-items: center;
 
+    center {
+      top: 0;
+      text-align: center;
+    }
+
     .left, .right {
-      margin: 0;
+      margin: 20px 0;
     }
 
     .left {
@@ -133,7 +151,7 @@ const User = ({ id }) => {
       {data && (
         <>
           <aside className='left'>
-            { (loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')) && (
+            { (loggedInUser._id === id) && (
               <>
                 <h1>Your Profile</h1>
                 <h2>User: {id}</h2>
