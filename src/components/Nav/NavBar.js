@@ -1,3 +1,4 @@
+import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 import Burger from './Burger';
@@ -9,8 +10,13 @@ const Nav = styled.nav`
   min-height: 55px;
   z-index: 1;
 
-  .logo {
+  a {
+    text-decoration: none;
+  }
+
+  #text-logo {
     font-size: 18px;
+    line-height: 26px;
     font-family: 'Aleo';
     font-weight: bold;
     }
@@ -19,9 +25,9 @@ const Nav = styled.nav`
 const Navbar = () => {
   return (
     <Nav>
-      <div>
-        <span className='logo'>The Flaming Iguana</span>
-      </div>
+      <Link to={'/'}>
+        <span id='text-logo'>The Flaming Iguana</span>
+      </Link>
       <Burger/>
     </Nav>
   );
