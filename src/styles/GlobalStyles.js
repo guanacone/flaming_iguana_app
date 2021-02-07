@@ -64,6 +64,20 @@ const GlobalStyles = createGlobalStyle`
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        position: relative;
+        margin-right: 20px;
+        animation: fadein 0.8s;
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+                left: 400px;
+            }
+            to {
+                opacity: 1;
+                left: 0px;
+            }
+        }
     }
 
     .logo {
@@ -75,6 +89,16 @@ const GlobalStyles = createGlobalStyle`
         display: flex;
         flex-direction: column;
         align-items: center;
+        animation: fade 1.3s ease-out 0.3s backwards;
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
     }
 
     .burger {
@@ -91,6 +115,10 @@ const GlobalStyles = createGlobalStyle`
         .container {
             display: flex;
             justify-content: center;
+        }
+
+        .main-wrapper {
+            animation: none;
         }
 
         .logo-wrapper {
