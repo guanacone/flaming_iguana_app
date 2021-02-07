@@ -9,9 +9,10 @@ const GlobalStyles = createGlobalStyle`
     body {
         background: ${({ isProtected }) => (isProtected ? 'var(--green)' : 'white')};
         font-family: Open Sans; 
-        span, svg {
-            color: ${({ isProtected }) => (isProtected ? 'white' : 'lightgrey')};
-        }
+    }
+    
+    span, svg {
+        color: ${({ isProtected }) => (isProtected ? 'white' : 'lightgrey')};
     }
 
     h1 {
@@ -61,7 +62,7 @@ const GlobalStyles = createGlobalStyle`
 
     .logo-wrapper {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
     }
 
