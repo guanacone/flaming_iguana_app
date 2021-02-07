@@ -44,14 +44,16 @@ const NavWrapper = styled.div`
         align-items: center;
         span {
             opacity: 0;
-            color: #3D3D3D;
-            font-size: 10px;
-    font: normal normal 600 8px/11px Open Sans;
+            /* color: #3D3D3D; */
+            font-size: 6px;
+            line-height: 11px;
+            font-weight: 600;
         }
     }
 
     .icon {
-      width: 50px;
+      width: 30px;
+      font-size: 18px;
     }
 
   @media (max-width: 500px) {
@@ -112,7 +114,6 @@ const NavWrapper = styled.div`
         width: 100%;
         span {
             opacity: 1;
-            color: lightgrey;
             font-size: 18px;
             padding-left: 15px;
             white-space: nowrap;
