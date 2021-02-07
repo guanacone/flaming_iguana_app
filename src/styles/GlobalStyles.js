@@ -8,15 +8,13 @@ const GlobalStyles = createGlobalStyle`
 
     body {
         background: ${({ isProtected }) => (isProtected ? 'var(--green)' : 'white')};
-        color: ${({ isProtected }) => (isProtected ? 'white' : 'var(--green)')};
-        svg {
+        font-family: Open Sans; 
+        span, svg {
             color: ${({ isProtected }) => (isProtected ? 'white' : 'lightgrey')};
         }
-        font-family: Open Sans;        
     }
 
     h1 {
-        color: ${({ isProtected }) => (isProtected ? 'white' : 'var(--gray)')};
         font-weight: 300;
         font-size: 40px;
         line-height: 55px;
@@ -24,6 +22,10 @@ const GlobalStyles = createGlobalStyle`
         opacity: 1;
         display: inline-block;
         text-align: center;
+    }
+
+    h1, h2, h3, h4, p {
+        color: ${({ isProtected }) => (isProtected ? 'white' : 'var(--gray)')};
     }
 
     form {
@@ -49,7 +51,6 @@ const GlobalStyles = createGlobalStyle`
         letter-spacing: -0.27px;
         color: #939393;
         opacity: 1;
-        padding-left: 20px;
         }
     }
 
@@ -77,8 +78,12 @@ const GlobalStyles = createGlobalStyle`
 
     .burger {
         div {
-            background: ${({ isProtected }) => (isProtected ? 'white' : 'var(--gray)')};
+            background: ${({ isProtected }) => (isProtected ? 'white' : '#CECED0')};
         }
+    }
+
+    #text-logo {
+        color: ${({ isProtected }) => (isProtected ? 'white' : 'var(--green)')};
     }
 
     @media(max-width: 700px) {
