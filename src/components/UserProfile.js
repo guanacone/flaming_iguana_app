@@ -33,7 +33,7 @@ const StyledSection = styled.section`
   }
 
   h3, h4 {
-    margin: 20px 0 5px;
+    margin: 20px 0 10px;
   }
 
   p {
@@ -89,14 +89,10 @@ const StyledSection = styled.section`
     background: var(--green);
   }
 
-  .profile-icon {
-    
-  }
-
   @media(max-width: 950px) {
     flex-direction: column;
     align-items: center;
-
+    
     center {
       top: 0;
       text-align: center;
@@ -110,6 +106,9 @@ const StyledSection = styled.section`
       h1, h2 {
         text-align: center;
       }
+      button {
+      text-align: center;
+    }
     }
   }
 `;
