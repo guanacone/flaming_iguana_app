@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
         background-color: ${({ isProtected }) => (isProtected ? 'var(--green)' : 'white')};
         font-family: Open Sans; 
     }
-    
+
     h1 {
         font-weight: 300;
         font-size: 40px;
@@ -100,6 +100,18 @@ const GlobalStyles = createGlobalStyle`
 
     #text-logo {
         color: ${({ isProtected }) => (isProtected ? 'white' : 'var(--green)')};
+    }
+
+    .icon-wrapper {
+        color: ${({ isProtected }) => (isProtected ? 'white' : 'lightgrey')};
+        :hover {
+            color: ${({ isProtected }) => (isProtected ? 'white' : '#333333')};
+        }
+        @media(max-width: 420px) {
+            :hover {
+                color: ${({ isProtected }) => (isProtected ? 'white' : 'lightgrey')};
+            }
+        }
     }
 
     @media(max-width: 700px) {

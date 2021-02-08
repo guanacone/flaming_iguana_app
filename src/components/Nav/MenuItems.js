@@ -22,42 +22,34 @@ const handleLogout = async (evt) => {
 const NavWrapper = styled.div`
     font-size: 30px;
 
-    a {
-        text-decoration: none;
-        :hover {
-            svg, span {
-                color: ${({ isProtected }) => (isProtected ? 'none' : '#3D3D3D')};
-            }
-            span {
-                opacity: 1;
-                animation: fadein 1s;
-
-                @keyframes fadein {
-                  from {
-                    opacity: 0;
-                  }
-                  to {
-                      opacity: 1;
-                  }
-                }
-            }
-        }
-    }
-
     .menu {
       display: flex;
     }
 
     .icon-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 10px;
+      span {
+        opacity: 0;
+        font-size: 6px;
+        line-height: 11px;
+        font-weight: 600;
+      }
+      :hover {
         span {
-            opacity: 0;
-            font-size: 6px;
-            line-height: 11px;
-            font-weight: 600;
+          animation: fadein 1s forwards;
+          @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
+        }
+      }
     }
 
     .icon {
@@ -65,30 +57,7 @@ const NavWrapper = styled.div`
       font-size: 18px;
     }
 
-  @media (max-width: 500px) {
-    font-size: 18px;
-
-    .icon-wrapper {
-      width: 30px;
-    }
-  }  
-
   @media (max-width: 420px) {
-
-    a {
-        text-decoration: none;
-        :hover {
-            svg, span {
-                color: lightgrey;
-                text-decoration: underline;
-            }
-        }
-      margin: 5px 0;  
-    }
-
-    svg {
-      width: 30px;
-    }
 
     .masker {
       transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
@@ -112,7 +81,7 @@ const NavWrapper = styled.div`
       height: 100vh;
       min-width: 210px;
       width: 40vw;
-      padding-top: 3.5rem;
+      padding-top: 6rem;
       transition: transform 0.3s ease-in-out;
     }
 
@@ -121,11 +90,15 @@ const NavWrapper = styled.div`
         flex-direction: row;
         padding: 5px 15px;
         width: 100%;
+        margin: 10px 0;
         span {
             opacity: 1;
             font-size: 18px;
             padding-left: 15px;
             white-space: nowrap;
+          :hover {
+            animation: none; 
+          }
         }
     }
 
@@ -135,11 +108,9 @@ const NavWrapper = styled.div`
   }
 `;
 
-const MenuItems = ({ location, open, menuRef }) => {
-  // const regExPattern = /^(\/user)/;
-  // const isProtected = regExPattern.test(location.pathname);
+const MenuItems = ({ isProtected, open, menuRef }) => {
   const { token } = getUser();
-  console.log(location);
+  console.log(isProtected);
   return (
     <NavWrapper isProtected={null} ref={menuRef} open={open}>
       <div className='masker'></div>
