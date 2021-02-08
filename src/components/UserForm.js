@@ -30,6 +30,7 @@ const UserForm = ({
   password,
   biography,
   handleSubmit,
+  title,
 }) => (
   <form onSubmit={handleSubmit}>
     <input type='text' placeholder='First Name' required {...firstName.bind}/>
@@ -39,7 +40,7 @@ const UserForm = ({
       <input type='password' placeholder='Password' required minLength='6' {...password.bind}/>)}
     {biography && (
       <StyledTextarea placeholder='Biography' rows='6' maxLength='160' {...biography.bind}/>)}
-    <SubmitButton>SUBMIT</SubmitButton>
+    <SubmitButton>{title}</SubmitButton>
   </form>
 );
 
