@@ -25,11 +25,21 @@ const NavWrapper = styled.div`
     a {
         text-decoration: none;
         :hover {
-            svg {
-                color: #3D3D3D;
+            svg, span {
+                color: ${({ isProtected }) => (isProtected ? 'none' : '#3D3D3D')};
             }
             span {
                 opacity: 1;
+                animation: fadein 1s;
+
+                @keyframes fadein {
+                  from {
+                    opacity: 0;
+                  }
+                  to {
+                      opacity: 1;
+                  }
+                }
             }
         }
     }
@@ -44,7 +54,6 @@ const NavWrapper = styled.div`
         align-items: center;
         span {
             opacity: 0;
-            /* color: #3D3D3D; */
             font-size: 6px;
             line-height: 11px;
             font-weight: 600;
@@ -126,11 +135,13 @@ const NavWrapper = styled.div`
   }
 `;
 
-const MenuItems = ({ open, menuRef }) => {
+const MenuItems = ({ location, open, menuRef }) => {
+  // const regExPattern = /^(\/user)/;
+  // const isProtected = regExPattern.test(location.pathname);
   const { token } = getUser();
-
+  console.log(location);
   return (
-    <NavWrapper ref={menuRef} open={open}>
+    <NavWrapper isProtected={null} ref={menuRef} open={open}>
       <div className='masker'></div>
       <div className='menu'>
         <Link to={'/'}>
