@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link, navigate, graphql, useStaticQuery } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
 import useFetchAPI from '../hooks/useFetchAPI';
 import { getUser, isLoggedIn } from '../services/auth';
 import isBrowser from '../utils/isBrowser';
@@ -10,7 +9,9 @@ import hashEmail from '../utils/hashEmail';
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+  background: url('./iguana_logo.png') no-repeat center 10%;
 
   h1 {
     margin-left: 10px;
@@ -59,11 +60,7 @@ const StyledSection = styled.section`
   }
 
   @media (max-width: 575px) {
-    .cards-wrapper { 
-      flex-direction: column;
-      align-items: center;
-    }
-
+    background-position: center 8%;
     .title-wrapper {
       text-align: center;
       flex-direction: column-reverse;
@@ -71,7 +68,13 @@ const StyledSection = styled.section`
 
       h1 {
         margin-left: 0;
+        margin-bottom: 100px
       }
+    }
+
+    .cards-wrapper { 
+      flex-direction: column;
+      align-items: center;
     }
   }
 `;
@@ -110,26 +113,14 @@ const UserIndex = () => {
       <p>loading...</p>
     );
   };
-  const logo = useStaticQuery(graphql`
-    query {
-      file(relativePath: {eq: "iguana_logo.png"}) {
-        childImageSharp {
-          fixed(height: 150) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-    }
-  `);
 
   return (
     <StyledSection>
       <div className='title-wrapper'>
         <h1>User Index</h1>
-        <Img fixed={logo.file.childImageSharp.fixed}/>
       </div>
       <div className='cards-wrapper'>
-        { getContent(data, error)}
+        {getContent(data, error)}
       </div>
     </StyledSection>
   );
