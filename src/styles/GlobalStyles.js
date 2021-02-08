@@ -7,14 +7,10 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background: ${({ isProtected }) => (isProtected ? 'var(--green)' : 'white')};
+        background-color: ${({ isProtected }) => (isProtected ? 'var(--green)' : 'white')};
         font-family: Open Sans; 
     }
     
-    span, svg {
-        color: ${({ isProtected }) => (isProtected ? 'white' : 'lightgrey')};
-    }
-
     h1 {
         font-weight: 300;
         font-size: 40px;
@@ -78,11 +74,6 @@ const GlobalStyles = createGlobalStyle`
                 left: 0px;
             }
         }
-    }
-
-    .logo {
-        width: 20vw;
-        min-width: 200px;
     }
 
     .main-wrapper {
