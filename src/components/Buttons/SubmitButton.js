@@ -8,6 +8,7 @@ const StyledButton = styled.button`
     font-family: Open Sans;
     margin-bottom: 20px;
     cursor: pointer;
+    height: 44px;
     width: ${({ width }) => (width || '326px')};  
     background: var(--green);
     color: white;
