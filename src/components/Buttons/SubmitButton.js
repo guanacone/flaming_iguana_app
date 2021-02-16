@@ -8,7 +8,7 @@ const StyledButton = styled.button`
     font-family: Open Sans;
     margin-bottom: 20px;
     cursor: pointer;
-    width: 326px;  
+    width: ${({ width }) => (width || '326px')};  
     background: var(--green);
     color: white;
     :hover {
@@ -18,7 +18,11 @@ const StyledButton = styled.button`
 `;
 
 const SubmitButton = (props) => (
-  <StyledButton className='submit-button' type='submit' onClick={props.onClick}>
+  <StyledButton
+    className='submit-button'
+    type='submit'
+    onClick={props.onClick}
+    width={props.width}>
     {props.children}
   </StyledButton>
 );
