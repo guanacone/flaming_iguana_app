@@ -3,21 +3,24 @@ import styled from 'styled-components';
 import SubmitButton from './Buttons/SubmitButton';
 
 const StyledTextarea = styled.textarea`
-background: #FFFFFF 0% 0% no-repeat padding-box;
         border: 1px solid #CECED0;
         border-radius: 8px;
         opacity: 1;
         width: 302px;
         resize: none;
         margin-bottom: 25px;
+        color: #939393;
+        padding: 20px 0 0 20px;
 
         ::placeholder {
         text-align: left;
-        font: normal normal 300 18px/24px Open Sans;
+        font-family: Open Sans;
+        font-size: 18px;
         letter-spacing: -0.27px;
         color: #939393;
-        padding-left: 10px;
         opacity: 1;
+        padding-left: 20px;
+        padding-top: 20px;
         }`;
 
 const UserForm = ({
@@ -27,6 +30,7 @@ const UserForm = ({
   password,
   biography,
   handleSubmit,
+  title,
 }) => (
   <form onSubmit={handleSubmit}>
     <input type='text' placeholder='First Name' required {...firstName.bind}/>
@@ -35,8 +39,8 @@ const UserForm = ({
     {password && (
       <input type='password' placeholder='Password' required minLength='6' {...password.bind}/>)}
     {biography && (
-      <StyledTextarea placeholder='Biography' rows='15' maxLength='160' {...biography.bind}/>)}
-    <SubmitButton>SUBMIT</SubmitButton>
+      <StyledTextarea placeholder='Biography' rows='6' maxLength='160' {...biography.bind}/>)}
+    <SubmitButton>{title}</SubmitButton>
   </form>
 );
 

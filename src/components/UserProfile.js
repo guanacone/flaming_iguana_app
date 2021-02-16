@@ -9,6 +9,7 @@ import {
   faPen,
   faLock,
   faUserTimes,
+  faImages,
 } from '@fortawesome/free-solid-svg-icons';
 import { isLoggedIn, getUser } from '../services/auth';
 import hashEmail from '../utils/hashEmail';
@@ -31,6 +32,24 @@ const StyledSection = styled.section`
     letter-spacing: -0.21px;
   }
 
+  h3, h4 {
+    margin: 20px 0 10px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  center {
+    position: relative;
+    top: -50px;
+    flex-grow: 2;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .left {
     display: flex;
     flex-direction: column;
@@ -40,39 +59,56 @@ const StyledSection = styled.section`
       max-width: 200px;
       border: 6px solid #FFF;
       border-radius: 50%;
-      margin: 30px 10px;
+      margin: 30px 10px -10px;
     }
     button {
       text-align: left;
     } 
   }
   
-  center {
-    flex-grow: 2;
-    text-align: left;
-  }
-
   .right {
     margin-left: 30px;
   }
 
   .icon {
-    width: 50px;
+    width: 35px;
     cursor: pointer;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 6px solid #FFF;
+    border-radius: 50%; 
+    position: relative;
+    top: -200px;
+    left: 160px;
+    background: var(--green);
   }
 
   @media(max-width: 950px) {
     flex-direction: column;
     align-items: center;
+    
+    center {
+      top: 0;
+      text-align: center;
+    }
 
     .left, .right {
-      margin: 0;
+      margin: 20px 0;
     }
 
     .left {
       h1, h2 {
         text-align: center;
       }
+      button {
+      text-align: center;
+    }
     }
   }
 `;
@@ -114,13 +150,20 @@ const User = ({ id }) => {
       {data && (
         <>
           <aside className='left'>
-            { (loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')) && (
+            { (loggedInUser._id === id) && (
               <>
                 <h1>Your Profile</h1>
                 <h2>User: {id}</h2>
               </>
             )}
-            <img src={`https://www.gravatar.com/avatar/${hashEmail(data.email)}?s=200`} />
+            <div className='image-wrapper'>
+              <img src={`https://www.gravatar.com/avatar/${hashEmail(data.email)}?s=200`} />
+              <Link to={'#'}>
+                <div className='icon-wrapper'>
+                  <FontAwesomeIcon className='profile-icon' icon={faImages}/>
+                </div>
+              </Link>
+            </div>
             { (loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')) && (
               <Link to={'#'} onClick={() => setPasswordEdit(true)}>
                 <SubmitButton>
@@ -157,9 +200,9 @@ const User = ({ id }) => {
               />
             )}
           </center>
-          <div className='right'>
+          <aside className='right'>
             <Logo/>
-          </div>
+          </aside>
         </>
       )}
       {(!data && loading) && (<p>...loading</p>)}

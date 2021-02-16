@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link, navigate, graphql, useStaticQuery } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
 import useFetchAPI from '../hooks/useFetchAPI';
 import { getUser, isLoggedIn } from '../services/auth';
 import isBrowser from '../utils/isBrowser';
@@ -10,7 +9,9 @@ import hashEmail from '../utils/hashEmail';
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+  background: url('./iguana_logo.png') no-repeat center 10%;
 
   h1 {
     margin-left: 10px;
@@ -20,6 +21,7 @@ const StyledSection = styled.section`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: 50px;
   }
 
   .title-wrapper, .cards-wrapper {
@@ -37,32 +39,28 @@ const StyledSection = styled.section`
     border-radius: 8px;
     width: 18vw;
     min-width: 210px;
-    margin: 10px 10px;
-    
+    text-decoration: none;
+    margin: 10px;
+
     img {
       width: 80%;
       border-radius: 50%;
-      margin: 50px 10px 10px;
-    }  
+      margin: 30px 10px 10px;
+    }
 
-    a {
-      text-decoration: none;
+    span {
       text-align: center;
-      font: normal normal 600 20px/30px Open Sans;
+      font: normal normal 400 20px/30px Open Sans;
       letter-spacing: -0.33px;
       color: #333333;
-      padding: 10px 10px 40px;
+      padding: 10px 10px 50px;
       white-space: nowrap;
       overflow: hidden; 
     }
   }
 
   @media (max-width: 575px) {
-    .cards-wrapper { 
-      flex-direction: column;
-      align-items: center;
-    }
-
+    background-position: center 8%;
     .title-wrapper {
       text-align: center;
       flex-direction: column-reverse;
@@ -70,7 +68,13 @@ const StyledSection = styled.section`
 
       h1 {
         margin-left: 0;
+        margin-bottom: 100px
       }
+    }
+
+    .cards-wrapper { 
+      flex-direction: column;
+      align-items: center;
     }
   }
 `;
@@ -94,12 +98,12 @@ const UserIndex = () => {
         <>
           {dataContent.map((profile) => {
             return (
-              <div key={profile._id} className='card'>
+              <Link key={profile._id} className='card' to={`/user/${profile._id}`}>
                 <img src={`https://www.gravatar.com/avatar/${hashEmail(profile.email)}?s=200`} />
-                <Link to={`/user/${profile._id}`}>
+                <span>
                   {profile.firstName} {profile.familyName}
-                </Link>
-              </div>
+                </span>
+              </Link>
             );
           })}
         </>
@@ -109,26 +113,14 @@ const UserIndex = () => {
       <p>loading...</p>
     );
   };
-  const logo = useStaticQuery(graphql`
-    query {
-      file(relativePath: {eq: "iguana_logo.png"}) {
-        childImageSharp {
-          fixed(height: 150) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-    }
-  `);
 
   return (
     <StyledSection>
       <div className='title-wrapper'>
         <h1>User Index</h1>
-        <Img fixed={logo.file.childImageSharp.fixed}/>
       </div>
       <div className='cards-wrapper'>
-        { getContent(data, error)}
+        {getContent(data, error)}
       </div>
     </StyledSection>
   );

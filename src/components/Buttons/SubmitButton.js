@@ -8,7 +8,7 @@ const StyledButton = styled.button`
     font-family: Open Sans;
     margin-bottom: 20px;
     cursor: pointer;
-    width: 302px;  
+    width: 326px;  
     background: var(--green);
     color: white;
     :hover {

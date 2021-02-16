@@ -3,24 +3,26 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyles = createGlobalStyle`
     :root {
         --green: #9ECF73;
-        --gray: #909090
+        --gray: #3D3D3D
     }
 
     body {
-        background: ${({ isProtected }) => (isProtected ? 'var(--green)' : 'white')};
-        color: ${({ isProtected }) => (isProtected ? 'white' : 'var(--green)')};
-        svg {
-            color: ${({ isProtected }) => (isProtected ? 'white' : 'lightgrey')};
-        }
+        background-color: ${({ isProtected }) => (isProtected ? 'var(--green)' : 'white')};
+        font-family: Open Sans; 
     }
 
     h1 {
-        color: ${({ isProtected }) => (isProtected ? 'white' : 'var(--gray)')};
-        font: normal normal 300 40px/55px Open Sans;
+        font-weight: 300;
+        font-size: 40px;
+        line-height: 55px;
         letter-spacing: -0.6px;
         opacity: 1;
         display: inline-block;
         text-align: center;
+    }
+
+    h1, h2, h3, h4, p {
+        color: ${({ isProtected }) => (isProtected ? 'white' : 'var(--gray)')};
     }
 
     form {
@@ -30,20 +32,21 @@ const GlobalStyles = createGlobalStyle`
     }
 
     input {
-        background: #FFFFFF 0% 0% no-repeat padding-box;
         border: 1px solid #CECED0;
         border-radius: 8px;
         opacity: 1;
         width: 302px;
         height: 40px;
         margin-bottom: 25px;
+        color: #939393;
+        padding-left: 20px;
 
         ::placeholder {
         text-align: left;
-        font: normal normal 300 18px/24px Open Sans;
+        font-family: Open Sans;
+        font-size: 18px;
         letter-spacing: -0.27px;
         color: #939393;
-        padding-left: 10px;
         opacity: 1;
         }
     }
@@ -55,24 +58,59 @@ const GlobalStyles = createGlobalStyle`
 
     .logo-wrapper {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
-    }
+        position: relative;
+        margin-right: 20px;
+        animation: fadein 0.8s;
 
-    .logo {
-        width: 20vw;
-        min-width: 200px;
+        @keyframes fadein {
+            from {
+                opacity: 0;
+                left: 400px;
+            }
+            to {
+                opacity: 1;
+                left: 0px;
+            }
+        }
     }
 
     .main-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
+        animation: fade 1.3s ease-out 0.3s backwards;
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
     }
 
     .burger {
         div {
-            background: ${({ isProtected }) => (isProtected ? 'white' : 'var(--gray)')};
+            background: ${({ isProtected }) => (isProtected ? 'white' : '#CECED0')};
+        }
+    }
+
+    #text-logo {
+        color: ${({ isProtected }) => (isProtected ? 'white' : 'var(--green)')};
+    }
+
+    .icon-wrapper {
+        color: ${({ isProtected }) => (isProtected ? 'white' : 'lightgrey')};
+        :hover {
+            color: ${({ isProtected }) => (isProtected ? 'white' : '#333333')};
+        }
+        @media(max-width: 420px) {
+            :hover {
+                color: ${({ isProtected }) => (isProtected ? 'white' : 'lightgrey')};
+            }
         }
     }
 
@@ -80,6 +118,10 @@ const GlobalStyles = createGlobalStyle`
         .container {
             display: flex;
             justify-content: center;
+        }
+
+        .main-wrapper {
+            animation: none;
         }
 
         .logo-wrapper {

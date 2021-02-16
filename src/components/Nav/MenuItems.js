@@ -22,61 +22,42 @@ const handleLogout = async (evt) => {
 const NavWrapper = styled.div`
     font-size: 30px;
 
-    a {
-        text-decoration: none;
-        :hover {
-            svg {
-                color: #3D3D3D;
-            }
-            span {
-                opacity: 1;
-            }
-        }
-    }
-
     .menu {
       display: flex;
     }
 
     .icon-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 10px;
+      span {
+        opacity: 0;
+        font-size: 6px;
+        line-height: 11px;
+        font-weight: 600;
+      }
+      :hover {
         span {
-            opacity: 0;
-            color: #3D3D3D;
-            font-size: 10px;
-    font: normal normal 600 8px/11px Open Sans;
+          animation: fadein 1s forwards;
+          @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
+        }
+      }
     }
 
     .icon {
-      width: 50px;
-    }
-
-  @media (max-width: 500px) {
-    font-size: 20px;
-
-    .icon-wrapper {
       width: 30px;
+      font-size: 18px;
     }
-  }  
 
   @media (max-width: 420px) {
-
-    a {
-        text-decoration: none;
-        :hover {
-            svg, span {
-                color: lightgrey;
-                text-decoration: underline;
-            }
-        }
-    }
-
-    svg {
-      width: 30px;
-    }
 
     .masker {
       transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
@@ -100,7 +81,7 @@ const NavWrapper = styled.div`
       height: 100vh;
       min-width: 210px;
       width: 40vw;
-      padding-top: 3.5rem;
+      padding-top: 6rem;
       transition: transform 0.3s ease-in-out;
     }
 
@@ -109,12 +90,15 @@ const NavWrapper = styled.div`
         flex-direction: row;
         padding: 5px 15px;
         width: 100%;
+        margin: 10px 0;
         span {
             opacity: 1;
-            color: lightgrey;
-            font-size: 20px;
+            font-size: 18px;
             padding-left: 15px;
             white-space: nowrap;
+          :hover {
+            animation: none; 
+          }
         }
     }
 
@@ -124,11 +108,11 @@ const NavWrapper = styled.div`
   }
 `;
 
-const MenuItems = ({ open, menuRef }) => {
+const MenuItems = ({ isProtected, open, menuRef }) => {
   const { token } = getUser();
-
+  console.log(isProtected);
   return (
-    <NavWrapper ref={menuRef} open={open}>
+    <NavWrapper isProtected={null} ref={menuRef} open={open}>
       <div className='masker'></div>
       <div className='menu'>
         <Link to={'/'}>

@@ -73,7 +73,8 @@ const UserNew = () => {
           firstName={firstName}
           familyName={familyName}
           email={email}
-          password={password} />
+          password={password}
+          title='SUBMIT' />
       </div>
     </StyledSection>
   );

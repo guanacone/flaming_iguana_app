@@ -35,6 +35,7 @@ const UserNew = (props) => {
           familyName={familyName}
           email={email}
           biography={biography}
+          title='SAVE CHANGES'
           handleSubmit = {
             async (evt) => {
               evt.preventDefault();
