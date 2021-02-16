@@ -39,7 +39,7 @@ const UserForm = ({
     {password && (
       <input type='password' placeholder='Password' required minLength='6' {...password.bind}/>)}
     {biography && (
-      <StyledTextarea placeholder='Biography' rows='6' maxLength='160' {...biography.bind}/>)}
+      <StyledTextarea placeholder='Biography' rows='6' maxLength='250' {...biography.bind}/>)}
     <SubmitButton>{title}</SubmitButton>
   </form>
 );
