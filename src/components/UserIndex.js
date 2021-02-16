@@ -76,6 +76,10 @@ const StyledSection = styled.section`
       flex-direction: column;
       align-items: center;
     }
+
+    .card {
+      min-width: 300px;
+    }
   }
 `;
 
