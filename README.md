@@ -9,6 +9,6 @@ https://stackoverflow.com/questions/32553158/detect-click-outside-react-componen
 * Set up data validation for mongoDB on update.
 * ~~Style emails.
 
-Live version available [here](https://enigmatic-hollows-26179.herokuapp.com/) (please allow 3-5 min for server to start)
+Live version available [here](https://enigmatic-hollows-26179.herokuapp.com/) (please allow 3-5 min for server to start). UX/UI [guidelines](https://xd.adobe.com/view/32520c28-3918-420b-af3d-1c36d2091783-6701/grid/)
 
 
