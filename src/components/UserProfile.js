@@ -32,16 +32,28 @@ const StyledSection = styled.section`
     letter-spacing: -0.21px;
   }
 
+  h3 {
+    /* text-align: left; */
+    font: normal normal 600 26px/36px Open Sans;
+    letter-spacing: -0.39px;
+    svg {
+      padding-left: 10px;
+      font-size: 20px;
+    }
+  }
+
   h3, h4 {
-    margin: 20px 0 10px;
+    margin: 20px 0 0;
   }
 
   p {
+    padding-top: 5px;
     margin: 0;
   }
 
   center {
     position: relative;
+    padding: 40px;
     top: -50px;
     flex-grow: 2;
     text-align: left;
@@ -166,14 +178,14 @@ const User = ({ id }) => {
             </div>
             { (loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')) && (
               <Link to={'#'} onClick={() => setPasswordEdit(true)}>
-                <SubmitButton>
+                <SubmitButton width={'250px'}>
                   <FontAwesomeIcon className='icon' icon={faLock}/>
                   <span>CHANGE PASSWORD</span>
                 </SubmitButton>
               </Link>
             )}
             {(loggedInUser.roles && loggedInUser.roles.find((role) => role === 'admin')) && (
-              <SubmitButton onClick={() => deleteUser(`user/${id}`)}>
+              <SubmitButton onClick={() => deleteUser(`user/${id}`)} width={'250px'}>
                 <FontAwesomeIcon className='icon' icon={faUserTimes} onClick={() => deleteUser(`/user/${id}`)}/>DELETE ACCOUNT
               </SubmitButton>
             )}
@@ -185,7 +197,7 @@ const User = ({ id }) => {
                   {(loggedInUser._id === id || loggedInUser.roles.find((role) => role === 'admin')) && (<FontAwesomeIcon className='icon' icon={faPen} onClick={() => setEditing(true)}/>)}
                 </h3>
                 <p>{data.email}</p>
-                <h4>Biography:</h4>
+                <h4>BIOGRAPHY:</h4>
                 <p>{data.biography }</p>
               </>
             )}

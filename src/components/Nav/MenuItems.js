@@ -108,9 +108,8 @@ const NavWrapper = styled.div`
   }
 `;
 
-const MenuItems = ({ isProtected, open, menuRef }) => {
+const MenuItems = ({ open, menuRef }) => {
   const { token } = getUser();
-  console.log(isProtected);
   return (
     <NavWrapper isProtected={null} ref={menuRef} open={open}>
       <div className='masker'></div>

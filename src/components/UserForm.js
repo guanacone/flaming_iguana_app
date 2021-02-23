@@ -19,8 +19,6 @@ const StyledTextarea = styled.textarea`
         letter-spacing: -0.27px;
         color: #939393;
         opacity: 1;
-        padding-left: 20px;
-        padding-top: 20px;
         }`;
 
 const UserForm = ({
@@ -39,7 +37,7 @@ const UserForm = ({
     {password && (
       <input type='password' placeholder='Password' required minLength='6' {...password.bind}/>)}
     {biography && (
-      <StyledTextarea placeholder='Biography' rows='6' maxLength='160' {...biography.bind}/>)}
+      <StyledTextarea placeholder='Biography (max. 250 chars)' rows='10' maxLength='250' {...biography.bind}/>)}
     <SubmitButton>{title}</SubmitButton>
   </form>
 );
